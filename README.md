@@ -1,8 +1,8 @@
-# Festival Passport
+# Far Field
 
-A single-page, offline-capable festival guide for mobile phones: a curated
-shortlist of festivals worth travelling for, what each one is actually like,
-and how to go.
+A single-page, offline-capable festival guide for mobile phones. Eight festivals
+worth planning a year around — three close to home, five worth cruising an ocean
+for — what each one is actually like, and how to get there.
 
 - **Live app:** https://pyaeger.github.io/keons-playlist/
 - Two files: the app and a service worker. No accounts, no analytics, no backend.
@@ -21,7 +21,7 @@ An original track, *Twenty-Nine Fine*, plays offline from the app.
 
 ## Verification
 
-**[festival-passport-verification.md](festival-passport-verification.md)** is
+**[far-field-verification.md](far-field-verification.md)** is
 the evidence file for this app, kept deliberately separate so the app stays
 clean and the record stays auditable.
 
@@ -46,7 +46,7 @@ request it makes on page load. Self-hosting them would remove it.
 - `index.html` — the entire app (markup, styles, content, logic)
 - `sw.js` — service worker for offline caching
 - `twenty-nine-fine.mp3` — original track, playable offline
-- `festival-passport-verification.md` — the evidence file
+- `far-field-verification.md` — the evidence file
 - `guia.html` — redirect stub for the guide that moved to [`mi-guia`](https://github.com/pyaeger/mi-guia)
 
 ## Credits

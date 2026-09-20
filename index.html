@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Festival Passport</title>
-<meta name="description" content="A first-timer's launchpad to the world's great music festivals." />
+<title>Far Field</title>
+<meta name="description" content="Eight festivals worth planning a year around — three close to home, five worth cruising an ocean for — and how to actually get there." />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Festival Passport" />
+<meta name="apple-mobile-web-app-title" content="Far Field" />
 <meta name="theme-color" content="#0B0710" />
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230B0710'/%3E%3Ccircle cx='90' cy='78' r='34' fill='none' stroke='%23FF2E97' stroke-width='8'/%3E%3Ccircle cx='90' cy='78' r='12' fill='%232BD2FF'/%3E%3Crect x='80' y='44' width='8' height='40' rx='4' fill='%23FFB347' transform='rotate(20 90 78)'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,11 +35,13 @@
   body.lowpower .rig span{animation:none;}
   body.lowpower .rig{opacity:.4;}
 
-  .app{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:0 16px calc(96px + env(safe-area-inset-bottom));}
+  .app{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:0 20px calc(96px + env(safe-area-inset-bottom));}
   .eyebrow{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
   h1,h2,h3{font-family:"Unbounded",sans-serif;margin:0;line-height:1.02;letter-spacing:-.01em;}
   header{position:sticky;top:0;z-index:5;padding:calc(14px + env(safe-area-inset-top)) 0 10px;background:linear-gradient(var(--ink) 62%,transparent);}
-  .wordmark{font-family:"Unbounded";font-weight:800;font-size:26px;letter-spacing:-.02em;
+  .wmglow{position:absolute;left:-34px;top:calc(2px + env(safe-area-inset-top));width:230px;height:86px;pointer-events:none;
+    background:radial-gradient(52% 58% at 34% 50%,rgba(255,46,151,.30),rgba(255,179,71,.12) 58%,transparent 76%);filter:blur(16px);}
+  .wordmark{position:relative;font-family:"Unbounded";font-weight:800;font-size:26px;letter-spacing:-.02em;
     background:linear-gradient(92deg,var(--magenta),var(--amber),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;cursor:pointer;user-select:none;display:inline-block;}
   .tag{color:var(--muted);font-size:13px;margin-top:2px;}
   .chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none;}
@@ -62,12 +64,13 @@
   .star{position:absolute;top:12px;left:12px;z-index:2;background:rgba(11,7,16,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.28);color:#fff;font-family:"DM Mono";font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px;display:flex;align-items:center;gap:4px;}
   .g{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:3px 9px;border-radius:999px;}
 
-  .sheet{position:fixed;inset:0;z-index:20;background:var(--ink);overflow-y:auto;transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);padding:0 16px calc(40px + env(safe-area-inset-bottom));}
+  .sheet{position:fixed;inset:0;z-index:12;background:var(--ink);overflow-y:auto;transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);padding:0 20px calc(96px + env(safe-area-inset-bottom));}
   .sheet.open{transform:translateY(0);}
   .sheet .rig{position:absolute;}
   .sheetwrap{position:relative;z-index:1;max-width:560px;margin:0 auto;}
   .topbar{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:12px;padding:calc(14px + env(safe-area-inset-top)) 0 12px;background:linear-gradient(var(--ink) 70%,transparent);}
-  .back{background:var(--ink-2);border:1px solid var(--line);color:var(--text);width:40px;height:40px;border-radius:12px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .back{background:var(--ink-2);border:1px solid var(--line);color:var(--text);height:40px;padding:0 14px;border-radius:12px;
+    font-family:"DM Sans";font-weight:500;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:7px;white-space:nowrap;}
   .topbar .ttl{font-family:"Unbounded";font-weight:700;font-size:16px;text-transform:uppercase;}
   .hero{border-radius:var(--r);height:150px;display:flex;align-items:flex-end;padding:16px;margin-bottom:4px;position:relative;overflow:hidden;}
   .hero .pname{font-family:"Unbounded";font-weight:900;font-size:32px;text-transform:uppercase;color:#fff;line-height:.95;z-index:1;text-shadow:0 2px 24px rgba(0,0,0,.4);}
@@ -114,9 +117,9 @@
   .dedication b{color:var(--text);font-weight:500;}
   .enter{background:var(--text);color:var(--ink);border:none;padding:15px 30px;border-radius:999px;font-family:"DM Sans";font-weight:700;font-size:15px;cursor:pointer;}
 
-  nav{position:fixed;bottom:0;left:0;right:0;z-index:15;display:flex;justify-content:center;gap:6px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--ink) 38%);}
-  nav button{background:transparent;border:none;color:var(--muted);font-family:"DM Sans";font-weight:500;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 14px;cursor:pointer;border-radius:14px;}
-  nav button .ni{font-size:19px;line-height:1;}
+  nav{position:fixed;bottom:0;left:0;right:0;z-index:15;display:flex;justify-content:center;gap:2px;padding:8px 6px calc(8px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--ink) 30%,var(--ink));}
+  nav button{flex:1 1 0;min-width:0;max-width:78px;background:transparent;border:none;color:var(--muted);font-family:"DM Sans";font-weight:500;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px;cursor:pointer;border-radius:14px;}
+  nav button .ni{font-size:18px;line-height:1;}
   nav button[aria-current="true"]{color:var(--text);}
   nav button[aria-current="true"] .ni{filter:drop-shadow(0 0 8px var(--magenta));}
   nav .afters-nav[hidden]{display:none;}
@@ -146,11 +149,6 @@
   .safe h3{font-size:14px;text-transform:uppercase;margin-bottom:10px;}
   .toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:var(--text);color:var(--ink);padding:11px 20px;border-radius:999px;font-weight:700;font-size:13px;opacity:0;transition:.3s;z-index:40;pointer-events:none;}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-  .menu{position:absolute;top:calc(14px + env(safe-area-inset-top));right:0;background:var(--ink-2);border:1px solid var(--line);color:var(--text);width:40px;height:40px;border-radius:12px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:8;}
-  .menu-pop{position:absolute;top:calc(60px + env(safe-area-inset-top));right:0;background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:6px;z-index:9;min-width:190px;box-shadow:0 14px 44px rgba(0,0,0,.55);display:none;}
-  .menu-pop.open{display:block;}
-  .menu-pop button{display:flex;align-items:center;gap:11px;width:100%;background:transparent;border:none;color:var(--text);font-family:"DM Sans";font-weight:500;font-size:14px;padding:12px;border-radius:10px;cursor:pointer;text-align:left;}
-  .menu-pop button:active{background:var(--haze);}
   .leadp{color:var(--muted);font-size:14px;margin:6px 0 4px;}
   .dedibox{background:linear-gradient(92deg,rgba(255,46,151,.12),rgba(43,210,255,.07));border:1px solid rgba(255,46,151,.3);border-radius:var(--r);padding:16px;margin:14px 0 6px;font-size:13px;line-height:1.6;color:var(--text);}
   .dedibox b{color:#fff;}
@@ -173,25 +171,21 @@
 <div class="rig" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"></span></div>
 
 <div id="splash">
-  <div class="hi">Festival<br>Passport</div>
-  <p>Want to see more of the world? A shortlist of festivals worth crossing an ocean for &mdash; and how to actually go.</p>
+  <div class="hi">Far<br>Field</div>
+  <p>Eight festivals worth planning a year around &mdash; three close to home, five worth cruising an ocean for &mdash; and how to actually get there.</p>
   <div class="dedication">Built by <b>Patrick Yaeger</b></div>
   <button class="enter" id="enterBtn">Let's go &rarr;</button>
 </div>
 
 <div class="app">
   <header>
-    <button class="menu" id="menuBtn" aria-label="Menu">&#9776;</button>
-    <div class="menu-pop" id="menuPop">
-      <button data-go="guide">&#128214;&nbsp; Guide</button>
-      <button data-go="journeys">&#129517;&nbsp; Inner Journeys</button>
-    </div>
-    <span class="wordmark" id="wordmark" title="Festival Passport">Festival Passport</span>
-    <div class="tag">Your festival passport &middot; your picks, plus a world to explore</div>
+    <div class="wmglow" aria-hidden="true"></div>
+    <span class="wordmark" id="wordmark" title="Far Field">Far Field</span>
+    <div class="tag">Three close to home &middot; five across an ocean</div>
     <div class="chips" id="chips"></div>
   </header>
   <div id="songCard">
-    <div class="song-eyebrow">&#9834; A song for you</div>
+    <div class="song-eyebrow">&#9834; An original track</div>
     <div class="song-title">Twenty-Nine Fine</div>
     <div class="song-cap">A poignant, melodic deep Afro-house track &mdash; stripped-back and downtempo.</div>
     <audio controls preload="none" src="./twenty-nine-fine.mp3"></audio>
@@ -227,8 +221,8 @@
     <div class="dedibox">Built by <b>Patrick Yaeger</b>.</div>
     <section class="blk"><h3>The home screen</h3>
       <ul class="tips">
-        <li><b>Featured</b> (the &#9733; row up top): your three &mdash; Electric Forest, Lollapalooza, EDC Orlando.</li>
-        <li><b>Bucket list</b>: five worth crossing an ocean for.</li>
+        <li><b>Featured</b> (the &#9733; row up top): the three closest to home &mdash; Electric Forest, Lollapalooza, EDC Orlando.</li>
+        <li><b>Bucket list</b>: five worth cruising an ocean for.</li>
         <li>The <b>chips</b> across the top filter the list by vibe. Tap any card to open it.</li>
       </ul></section>
     <section class="blk"><h3>Inside a festival</h3>
@@ -241,10 +235,10 @@
       <ul class="tips">
         <li><b>&#10024; Match</b> &mdash; four questions, and it picks your festival.</li>
         <li><b>&#127890; Kit</b> &mdash; a first-festival checklist; your ticks save on that phone.</li>
-        <li><b>&#129517; Inner Journeys</b> (in this menu) &mdash; copy-paste prompts that turn any AI into a personal interviewer.</li>
+        <li><b>&#129517; Inner Journeys</b> (in the bottom bar) &mdash; copy-paste prompts that turn any AI into a personal interviewer.</li>
       </ul></section>
     <section class="blk"><h3>&#127769; The Afters &mdash; your secret tab</h3>
-      <p class="leadp">Hidden on purpose. To unlock it: <b>triple-tap the &ldquo;Festival Passport&rdquo; title</b> at the top of the home screen. A new Afters button appears in the bottom bar and stays there. Inside: the after-hours and LGBTQ+ scene around each festival, plus safe-connecting tips.</p></section>
+      <p class="leadp">Hidden on purpose. To unlock it: <b>triple-tap the &ldquo;Far Field&rdquo; title</b> at the top of the home screen. A new Afters button appears in the bottom bar and stays there. Inside: the after-hours and LGBTQ+ scene around each festival, plus safe-connecting tips.</p></section>
     <section class="blk"><h3>Honest notes</h3>
       <ul class="tips">
         <li>Prices and projected dates are approximate &mdash; confirm officially before booking.</li>
@@ -264,7 +258,7 @@
 <div class="sheet" id="sheet">
   <div class="rig" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"></span></div>
   <div class="sheetwrap">
-    <div class="topbar"><button class="back" id="backBtn" aria-label="Back">&larr;</button><span class="ttl" id="sheetTitle"></span></div>
+    <div class="topbar"><button class="back" id="backBtn">&larr; Festivals</button><span class="ttl" id="sheetTitle"></span></div>
     <div id="sheetBody"></div>
   </div>
 </div>
@@ -273,6 +267,8 @@
   <button data-go="home" aria-current="true"><span class="ni">&#127914;</span>Festivals</button>
   <button data-go="quiz"><span class="ni">&#10024;</span>Match</button>
   <button data-go="check"><span class="ni">&#127890;</span>Kit</button>
+  <button data-go="journeys"><span class="ni">&#129517;</span>Journeys</button>
+  <button data-go="guide"><span class="ni">&#128214;</span>Guide</button>
   <button class="afters-nav" data-go="afters" hidden><span class="ni">&#127769;</span>Afters</button>
 </nav>
 <div class="toast" id="toast"></div>
@@ -478,7 +474,7 @@ function renderHome(){
   const picks=list.filter(f=>f.featured), rest=list.filter(f=>!f.featured);
   let html='';
   if(picks.length){html+=`<div class="sectlabel">\u2605 Featured</div>`+picks.map(cardHTML).join('');}
-  if(rest.length){html+=`<div class="sectlabel muted">Bucket list <span class="sub">\u00b7 worth crossing an ocean for</span></div>`+rest.map(cardHTML).join('');}
+  if(rest.length){html+=`<div class="sectlabel muted">Bucket list <span class="sub">\u00b7 worth cruising an ocean for</span></div>`+rest.map(cardHTML).join('');}
   homeEl.innerHTML=html;
 }
 
@@ -526,10 +522,18 @@ function openFest(id){
     <section class="blk"><h3>Find your people</h3><div class="commu">
       <a href="${f.commu.url}" target="_blank" rel="noopener">&#128172; ${f.commu.name}</a>
       <a class="pride" href="${f.queer.url}" target="_blank" rel="noopener">&#127987;&#65039;&#8205;&#127752; ${f.queer.name}</a></div></section>`;
+  const wasOpen=sheet.classList.contains('open');
   sheet.scrollTop=0;sheet.classList.add('open');
   startCountdown(f.cd,document.getElementById('cd'));
+  /* one history entry per opened sheet, so the phone's Back gesture closes it
+     instead of leaving the app */
+  if(!wasOpen){try{history.pushState({fest:id},'');}catch(e){}}
 }
-function closeFest(){sheet.classList.remove('open');clearInterval(cdTimer);}
+function closeSheet(){sheet.classList.remove('open');clearInterval(cdTimer);}
+function closeFest(){
+  if(history.state&&history.state.fest){history.back();return;} /* popstate closes it */
+  closeSheet();
+}
 
 const answers={};
 function renderQuiz(){
@@ -556,7 +560,7 @@ function go(name){
   document.querySelectorAll('nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===name));
   document.querySelector('header .chips').style.display=name==='home'?'flex':'none';
   document.getElementById('songCard').style.display=name==='home'?'block':'none';
-  document.getElementById('menuPop').classList.remove('open');
+  if(sheet.classList.contains('open'))closeFest();
   window.scrollTo(0,0);
 }
 
@@ -615,9 +619,8 @@ document.getElementById('backBtn').onclick=closeFest;
 document.getElementById('quizBody').onclick=e=>{const o=e.target.closest('.opt');if(!o)return;answers[o.dataset.q]=+o.dataset.o;renderQuiz();};
 document.getElementById('checkBody').onclick=e=>{const c=e.target.closest('.check');if(!c)return;const i=c.dataset.i,done=store.get('kit')||{};done[i]=!done[i];store.set('kit',done);c.dataset.done=!!done[i];};
 document.getElementById('nav').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.go);};
-document.getElementById('menuBtn').onclick=e=>{e.stopPropagation();document.getElementById('menuPop').classList.toggle('open');};
-document.getElementById('menuPop').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.go);};
-document.addEventListener('click',e=>{const pop=document.getElementById('menuPop');if(pop.classList.contains('open')&&!e.target.closest('#menuPop')&&!e.target.closest('#menuBtn'))pop.classList.remove('open');});
+window.addEventListener('popstate',()=>{if(sheet.classList.contains('open'))closeSheet();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sheet.classList.contains('open'))closeFest();});
 document.getElementById('journeysBody').onclick=e=>{const b=e.target.closest('.copybtn');if(b)copyText(buildPrompt(JOURNEYS[+b.dataset.j]));};
 let taps=0,tapT=null;
 document.getElementById('wordmark').addEventListener('click',()=>{taps++;clearTimeout(tapT);tapT=setTimeout(()=>taps=0,600);if(taps>=3){taps=0;revealAfters();go('afters');}});

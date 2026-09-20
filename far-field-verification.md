@@ -1,4 +1,4 @@
-Festival Passport — Claims Verification & Deployment Notes
+Far Field — Claims Verification & Deployment Notes
 Prepared June 2026. This document is the evidence file for the app. It is intentionally kept separate from the app itself so the app stays clean and this stays auditable. Confidence labels: H = high, M = medium, L = low (L/M explained).
 1. Device compatibility
 Claim
@@ -163,7 +163,7 @@ New "Inner Journeys" page (same header menu): six copy-paste prompts that turn a
 Copy buttons use the Clipboard API with a hidden-textarea fallback for older iOS Safari. (M — clipboard behaviour varies by iOS version; fallback covers the gap.)
 Navigation: bottom bar unchanged (Festivals · Match · Kit · Afters-when-unlocked); Guide and Inner Journeys live in the header menu to avoid overcrowding the bar. (H)
 Service worker bumped to v5. Re-upload both files to GitHub; phones refresh on next online open. (H)
-The Afters access (for reference): triple-tap the "Festival Passport" title on the home screen. Now also documented inside the in-app Guide. (H)
+The Afters access (for reference): triple-tap the "Far Field" title on the home screen. Now also documented inside the in-app Guide. (H)
 8. Live ticket prices verified (June 2026)
 Face-value/official figures where available; resale marketplaces run higher and are excluded. All remain approximate and the app links out to confirm.
 Festival
@@ -214,3 +214,59 @@ own work. The track was generated with Suno by Patrick Yaeger.
 
 Earlier commits in this repository still contain the removed photograph and
 name. Removing them there requires rewriting history.
+
+---
+
+## Version 4 — renamed *Far Field*, one navigation bar (September 2026)
+
+**Name.** The app is now **Far Field**. Changed in the `<title>`, the
+`apple-mobile-web-app-title`, the meta description, the splash screen, the
+header wordmark, the in-app Guide, the service worker and this document's
+title. The Afters easter egg is now a triple-tap on the "Far Field" wordmark.
+The GitHub repository and its Pages URL are still `keons-playlist`. (H)
+
+**Composition, stated plainly.** Eight festivals: **three in the US** —
+Electric Forest (Michigan), Lollapalooza (Chicago), EDC Orlando — which are
+also the three Featured picks, and **five abroad** — Tomorrowland, Glastonbury,
+Fuji Rock, Sziget, Rock in Rio. Earlier copy described the app as being about
+"crossing an ocean," which describes only the five. (H — counted from the
+`FESTS` array.)
+
+**Navigation.** The header menu is gone. Guide and Inner Journeys moved into
+the bottom bar, which now carries Festivals · Match · Kit · Journeys · Guide,
+plus Afters once unlocked. Measured at 320, 360 and 390 px viewport widths
+with all six buttons shown: no overflow, no horizontal page scroll. (H —
+measured in headless Chromium.)
+
+**Getting out of a festival page.** Three ways now, where there was one:
+- the bottom bar stays visible over an open festival page (its `z-index`
+  dropped below the bar's, and its bottom padding clears it);
+- the back control is labelled **← Festivals** rather than a bare arrow;
+- opening a festival pushes a history entry, so the phone's Back gesture and
+  the Escape key close the page instead of leaving the app. (H — all three
+  verified in headless Chromium, including `history.back()`.)
+
+**Gutter.** The page gutter went from 16 px to 20 px, and a soft radial glow
+sits behind the wordmark. The wordmark is gradient-filled text with no
+background of its own, so at 16 px its ink sat on the gutter line while
+adjacent cards' content began further in. (H)
+
+**Service worker bumped to v9** (`far-field-v9`). Installed phones pull the
+new version on their next online open. (H)
+
+### Known staleness at the time of this change — 2026-09-20
+
+Six of the eight countdown targets have already passed: Electric Forest
+(2026-06-25), Tomorrowland (2026-07-17), Fuji Rock (2026-07-24), Lollapalooza
+(2026-07-30), Sziget (2026-08-11) and Rock in Rio (2026-09-04). Those six show
+the fallback line *"Check the official site for the next confirmed date"*
+rather than a live countdown. Only EDC Orlando (2026-11-06) and Glastonbury
+(2027-06-23) still count down. (H — computed against the hard-coded `cd`
+values.)
+
+The ticket figures in section 8 were verified in June 2026 and are three
+months old. Nothing in this release re-verified them.
+
+This is a property of the design: the countdown targets are hard-coded
+timestamps rather than recurring windows, so the app's headline feature
+decays on a fixed schedule. It is recorded here rather than fixed. (H)

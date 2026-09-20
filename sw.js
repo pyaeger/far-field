@@ -1,9 +1,9 @@
-/* Keon's Playlist - service worker
+/* Festival Passport - service worker
    Gives the home-screen app genuine offline access after the first online load.
    Strategy: network-first for the page (so updates land), cache-first for everything
    else (fonts, etc.), with a cached fallback when there's no connection. */
 
-const CACHE = 'keons-playlist-v7';
+const CACHE = 'festival-passport-v8';
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();

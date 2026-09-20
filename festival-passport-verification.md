@@ -1,4 +1,4 @@
-Keon's Playlist — Claims Verification & Deployment Notes
+Festival Passport — Claims Verification & Deployment Notes
 Prepared June 2026. This document is the evidence file for the app. It is intentionally kept separate from the app itself so the app stays clean and this stays auditable. Confidence labels: H = high, M = medium, L = low (L/M explained).
 1. Device compatibility
 Claim
@@ -21,7 +21,7 @@ iOS 16 still gets security patches
 Yes, as of May 2026 Apple was still issuing iOS 16 security updates for the iPhone 8/X generation, though this is not expected to continue much past September 2026.
 M
 Macworld (3 days old at time of writing)
-Implication: the two-phone split is real and permanent — the 8 is iOS 16 forever, the 13 is the modern one. Nudge Keon to keep the 13 updated; the 8 is fine but increasingly out of long-term support.
+Implication: the two-phone split is real and permanent — the 8 is iOS 16 forever, the 13 is the modern one. The newer device should be kept updated; the 8 still works but is increasingly out of long-term support.
 2. App capability claims
 Claim
 Verified result
@@ -109,21 +109,20 @@ Sources for dates: organiser sites (Glastonbury, Tomorrowland, Sziget, Fuji Rock
 The green/red flags and tips are synthesised from public attendee coverage and festival guides, not lived experience. The app states this plainly on every festival card ("Gathered from real festival-goers, not first-hand"). (H — this is a transparency statement, not a factual claim about the world.)
 5. Deployment notes
 The app is now two files — this is the cost of genuine offline on iOS:
-keons-playlist.html — the app
+index.html — the app
 sw.js — the service worker (must sit next to the HTML, same folder, same domain)
 To publish (no server to run):
 Upload both files to free static hosting — Cloudflare Pages or GitHub Pages (drag-and-drop). The HTML can be named index.html so the URL is clean.
 Hosting must be HTTPS (Cloudflare/GitHub Pages are by default). Service workers and Add-to-Home-Screen require it. (H)
-Send Keon the link. On each phone: open in Safari → Share → Add to Home Screen.
-Have him open it once while online so the service worker caches it; after that it works offline (great for the WiFi-only iPhone 13). (H)
-Personalising the birthday screen: in keons-playlist.html, find add Keon's photo here and replace that element's text with <img src="keon.jpg" alt="Keon" />, then upload a small keon.jpg beside the other files. (H)
+Open the link on the target device: Safari → Share → Add to Home Screen.
+Open it once while online so the service worker caches it; after that it works offline, which matters on a WiFi-only device. (H)
 Known limitations (all by design / platform):
 No cross-device sync (no accounts / no server). (H)
 Live links (tickets, Spotify, maps, flights) need a connection; only the curated content works offline. (H)
 Saved progress can be cleared by iOS under storage pressure. (M)
 Projected future dates are estimates — always reconfirm on the official site. (H)
-6. Version 2 — Keon's three picks (added)
-Keon's actual top three (all US) were added and pinned at the top of the home screen as "Keon's Picks" with a star badge. The original five remain below as the "Bucket list" group. The app now holds 8 festivals.
+6. Version 2 — featured picks (added)
+Three US festivals were added and pinned at the top of the home screen as "Featured" with a star badge. The original five remain below as the "Bucket list" group. The app now holds 8 festivals.
 Festival
 Location
 2026 (confirmed)
@@ -157,15 +156,14 @@ Other v2 changes:
 The match quiz now scores all 8 festivals, and the travel question changed to "Stay in the US / Cross an ocean" to fit the mixed list. (H)
 The Afters tab gained entries for all three picks (Forest Family; Chicago / Northalsted; Orlando). (H)
 Service worker cache bumped to v3 — installed phones will pull the new version on their next online open. Re-upload both files to the same GitHub folder. (H)
-The birthday photo is embedded directly in the HTML, so the deployment is still just 2 files (index.html + sw.js). (H)
+Deployment is 2 files (index.html + sw.js). (H)
 7. Version 3 — in-app Guide + Inner Journeys
-Guide moved into the app. It's now a styled in-app page (matching the dark/neon look), reached from a menu icon in the top-right header, opening with the Patrick Yaeger birthday dedication. The standalone keons-playlist-guide.md remains only as an optional printable. (H)
-Birthday dedication now also appears on the splash screen: created by Patrick Yaeger for Keon's 29th birthday, Saturday June 13 2026, Cherokee Park Place, Louisville KY. (H)
+Guide moved into the app. It's now a styled in-app page (matching the dark/neon look), reached from a menu icon in the top-right header, opening with a build credit. (H)
 New "Inner Journeys" page (same header menu): six copy-paste prompts that turn any LLM into an adaptive interviewer. Each prompt instructs the AI to ask one question at a time, wait for the answer, confirm readiness before continuing, and adapt the next question to the prior response; it ends with a synthesis. Themes: Personality & Inner Wiring; Experiences You Crave; Identity & Authenticity; Connection & Belonging; Music & Joy; Growth & The Next Chapter. Each has an optional "[your specific angle]" slot. (H)
 Copy buttons use the Clipboard API with a hidden-textarea fallback for older iOS Safari. (M — clipboard behaviour varies by iOS version; fallback covers the gap.)
 Navigation: bottom bar unchanged (Festivals · Match · Kit · Afters-when-unlocked); Guide and Inner Journeys live in the header menu to avoid overcrowding the bar. (H)
 Service worker bumped to v5. Re-upload both files to GitHub; phones refresh on next online open. (H)
-The Afters access (for reference): triple-tap the "Keon's Playlist" title on the home screen. Now also documented inside the in-app Guide. (H)
+The Afters access (for reference): triple-tap the "Festival Passport" title on the home screen. Now also documented inside the in-app Guide. (H)
 8. Live ticket prices verified (June 2026)
 Face-value/official figures where available; resale marketplaces run higher and are excluded. All remain approximate and the app links out to confirm.
 Festival
@@ -201,3 +199,18 @@ Service worker bumped to v6.
 A native HTML5 <audio> player card "Twenty-Nine Fine" added to the top of the home dashboard (play/pause/scrub, works on iOS + Android). Audio is not autoplayed (iOS blocks it) — tap to play. (H)
 The player references ./twenty-nine-fine.mp3 in the same folder as index.html. Upload the provided twenty-nine-fine.mp3 to the GitHub repo root alongside index.html and sw.js. It runtime-caches for offline after the first online play. (H)
 Service worker bumped to v7.
+
+---
+
+## Provenance note — September 2026
+
+This app began as a personalised birthday gift and has been repurposed as a
+general festival guide. The recipient's name, photograph, age, the dedication
+and the event location were removed from the app, the service worker and this
+document; the embedded JPEG (~25 KB) was deleted from `index.html`.
+
+The song, the app, the design and this verification record are the author's
+own work. The track was generated with Suno by Patrick Yaeger.
+
+Earlier commits in this repository still contain the removed photograph and
+name. Removing them there requires rewriting history.

@@ -4,7 +4,7 @@ A single-page, offline-capable festival guide for mobile phones. Eight festivals
 worth planning a year around — three close to home, five worth crossing an ocean
 for — what each one is actually like, and how to get there.
 
-- **Live app:** https://pyaeger.github.io/keons-playlist/
+- **Live app:** https://pyaeger.github.io/far-field/
 - Two files: the app and a service worker. No accounts, no analytics, no backend.
 - Works offline after the first online load. Saved progress stays in the browser on the device.
 - Install on iPhone: open the link in Safari → Share → **Add to Home Screen** → open once while online.

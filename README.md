@@ -24,7 +24,13 @@ with safe-connecting notes.
 
 **Inner Journeys** — six copy-paste prompts that turn any LLM into a patient
 interviewer: one question at a time, waiting for your answer before the next.
-Nothing to do with festivals; they work on their own.
+
+A festival promises an outer journey: extraordinary music, visuals, dancing, and
+the thrill of new friendships. These are the same trip pointed inward —
+affirming guides for the curious into identity, creativity, and meaning.
+
+Far Field never sees your answers; the conversation happens wherever you paste
+the prompt.
 
 **Guide** — how the app works, and what it does not know.
 

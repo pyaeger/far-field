@@ -443,3 +443,33 @@ claiming to filter, and the data was already there.
 No service-worker bump. The worker is network-first for navigation, so an
 updated `index.html` lands once GitHub Pages' 10-minute `max-age` window
 passes. `far-field-v10` stands.
+
+---
+
+## Version 7 — Inner Journeys, stated correctly (September 2026)
+
+Version 6 described Inner Journeys as *"nothing to do with festivals; they work
+on their own."* That was the assistant's reading, asserted without asking the
+author, and it was wrong. Corrected here because it appeared in both the in-app
+Guide and the README. (D → corrected by the author)
+
+The intent, in Patrick's framing: a music festival promises a **life-affirming
+outer journey** — extraordinary music, visuals, celebratory dancing, the thrill
+of new friendships. Inner Journeys are the same trip pointed inward: affirming
+guides for the curious, into identity, creativity, and meaning. The two belong
+in one app because they are two directions of the same impulse, not because one
+was bundled with the other.
+
+The panel now carries that framing above the six prompts, the Guide section
+matches, and the README says the same thing.
+
+**One claim added, and it is a limit rather than a feature.** The panel now
+states: *"Far Field never sees your answers. The conversation happens wherever
+you paste it."* These prompts are designed to be pasted into an external AI,
+which does see everything typed into it. The app itself stores nothing and
+sends nothing — it has no accounts, no analytics and no backend — but saying
+"nothing is stored" without qualification would have been false comfort about a
+tool Far Field does not control. (H)
+
+Verified: four sections in the bar, the panel renders its new lead paragraphs
+above six prompt cards, no page errors.

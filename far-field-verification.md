@@ -223,7 +223,12 @@ name. Removing them there requires rewriting history.
 `apple-mobile-web-app-title`, the meta description, the splash screen, the
 header wordmark, the in-app Guide, the service worker and this document's
 title. The Afters easter egg is now a triple-tap on the "Far Field" wordmark.
-The GitHub repository and its Pages URL are still `keons-playlist`. (H)
+The repository was renamed `keons-playlist` → `far-field` on 2026-09-21, and the
+live app moved with it to `https://pyaeger.github.io/far-field/`. GitHub keeps a
+permanent redirect from the old name, verified by request: the old URL returns a
+301 to the new one, so existing links and any installed home-screen copy keep
+working. That redirect dies the moment a new repository is created under the old
+name, so the name should stay unused. (A — HTTP response)
 
 **Composition, stated plainly.** Eight festivals: **three in the US** —
 Electric Forest (Michigan), Lollapalooza (Chicago), EDC Orlando — which are

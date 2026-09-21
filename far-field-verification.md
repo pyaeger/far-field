@@ -308,3 +308,74 @@ does stop being useful on that date unless the tables are extended. (H)
 
 The ticket figures in section 8 were verified in June 2026 and are three months
 old. Nothing in this release re-verified them; they remain M — volatile.
+
+---
+
+## Version 5 — header alignment and a usable genre filter (September 2026)
+
+### Left alignment
+
+Reported: the title and tagline sat against the left edge with no visual
+padding. Version 4 had moved the page gutter from 16 px to 20 px and confirmed
+the number changed — which fixed nothing, because the gutter was never the
+problem. Measured at 390 px, the wordmark, tagline and card *edges* all sat at
+20 px while the card *text* sat at 37 px. The eye compares text to text, so the
+largest type on the page read as flush against the edge. (H — measured)
+
+The wordmark, tagline and chip row now carry a 16 px left margin, placing them
+at 36 px, the same column as the card copy. Card borders stay at 20 px: boxes
+on one line, text on another. (H)
+
+### The chip row on a desktop
+
+The row is `overflow-x: auto` with both `scrollbar-width: none` and
+`::-webkit-scrollbar { display: none }`. On a phone the finger is the
+affordance. On a pointer device there was **no affordance at all**: a plain
+mouse wheel scrolls the page, not the row, and nothing indicated the row
+continued. Because `.app` is capped at `max-width: 560px`, a desktop visitor
+saw about 6 of 14 chips with 625 px unreachable. Shift+wheel, a trackpad swipe
+and the Tab key all worked — the chips are real `<button>` elements — but none
+is discoverable. (H — measured at 1440 px)
+
+Fixed on two axes: `@media (hover:hover) and (pointer:fine)` wraps the row so
+every filter is visible without a gesture; `@media (hover:none),(pointer:coarse)`
+adds a right-edge mask so touch users can see the row continues. (H)
+
+### The genre list was cut from 13 to 5
+
+Counted across the 8 festivals, **seven of thirteen genres matched exactly one
+festival**: Arts, Carnival energy, Eclectic, Hip-Hop, Indie, Jam Band, Outdoors.
+With 8 items in the list, a filter narrowing to 1 returns less than scrolling
+already showed. The row also mixed two axes — musical genre (EDM, Electronic,
+Rock, Pop, Hip-Hop, Indie, Jam Band) against vibe and format (Everything,
+Mainstage, Arts, Outdoors, Carnival energy, Eclectic) — presented identically,
+so the row had no logic to learn. (H — counted from the `FESTS` array)
+
+Remaining filters, ordered broadest first:
+
+| Filter | Festivals |
+|---|---|
+| All | 8 |
+| Electronic | 5 |
+| EDM | 3 |
+| Multi-genre | 3 |
+| Pop | 3 |
+| Rock | 3 |
+
+`Everything` was renamed `Multi-genre`: tapping it returns three festivals, not
+everything, and what it actually means is that those three span genres rather
+than specialising. (H)
+
+**This change is subtractive and renaming only. No genre was added to any
+festival.** Tagging Rock in Rio "Hip-Hop" would tidy the filter and would also
+be an unsourced claim about that festival's programming. The dropped traits are
+not lost — Electric Forest's jam-band character and Fuji Rock's outdoor setting
+are already stated in their Real Talk sections, which is where detail belongs
+rather than a filter bar. (H)
+
+Verified by clicking every chip and counting results: the six counts above,
+no page errors. Desktop 1440 px: one row, nothing hidden. Phone 390 px: 104 px
+still scrolls behind the fade; 320 px: 174 px. (H)
+
+No service-worker bump — the worker is network-first for navigation, so an
+updated `index.html` lands on the next online load. `far-field-v10` stands.

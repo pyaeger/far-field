@@ -44,8 +44,17 @@
   .wordmark{position:relative;margin-left:16px;font-family:"Unbounded";font-weight:800;font-size:26px;letter-spacing:-.02em;
     background:linear-gradient(92deg,var(--magenta),var(--amber),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;cursor:pointer;user-select:none;display:inline-block;}
   .tag{color:var(--muted);font-size:13px;margin-top:2px;margin-left:16px;}
-  .chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none;}
+  .chips{display:flex;gap:8px;margin-left:16px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none;}
   .chips::-webkit-scrollbar{display:none;}
+  /* Touch scrolls the row with a finger; the fade says there is more to the right. */
+  @media (hover:none),(pointer:coarse){
+    .chips{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent);}
+  }
+  /* A mouse has no horizontal gesture and the row has no scrollbar, so on a
+     pointer device the chips wrap instead - every filter visible, nothing to discover. */
+  @media (hover:hover) and (pointer:fine){
+    .chips{flex-wrap:wrap;overflow-x:visible;row-gap:8px;}
+  }
   .chip{flex:0 0 auto;border:1px solid var(--line);background:var(--ink-2);color:var(--muted);padding:7px 14px;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;transition:.15s;}
   .chip[aria-pressed="true"]{background:var(--text);color:var(--ink);border-color:var(--text);}
 
@@ -278,7 +287,7 @@ const store={get(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){ret
 
 const FESTS=[
  {id:"ef",name:"Electric Forest",where:"Rothbury, Michigan",featured:true,
-  genres:["EDM","Electronic","Jam Band"],grad:["#48C46B","#7A1FFF"],
+  genres:["EDM","Electronic"],grad:["#48C46B","#7A1FFF"],
   good:["A forest turned into a glowing dreamworld \u2014 hidden art, surprise sets, sunrise yoga to 4am raves.",
         "The 'Forest Family' is famously tight-knit, kind and inclusive. A great first big one to go to solo.",
         "A rare mix of electronic and jam bands \u2014 The String Cheese Incident are basically the house band."],
@@ -295,7 +304,7 @@ const FESTS=[
   commu:{name:"r/electricforest",url:"https://www.reddit.com/r/electricforest/"},queer:{name:"Forest Family \u2014 r/aves",url:"https://www.reddit.com/r/aves/"}},
 
  {id:"lolla",name:"Lollapalooza",where:"Chicago, USA",featured:true,
-  genres:["Everything","Pop","Hip-Hop","Electronic"],grad:["#FFB347","#2BD2FF"],
+  genres:["Multi-genre","Pop","Electronic"],grad:["#FFB347","#2BD2FF"],
   good:["170+ artists across eight stages, every genre going, with the Chicago skyline and Lake Michigan behind it.",
         "Right downtown \u2014 no camping, just walk in from a hotel and back to a real bed.",
         "So much choice there's something worth seeing literally every hour."],
@@ -312,7 +321,7 @@ const FESTS=[
   commu:{name:"r/Lollapalooza",url:"https://www.reddit.com/r/Lollapalooza/"},queer:{name:"Chicago \u2014 Northalsted scene",url:"https://www.reddit.com/r/chicago/"}},
 
  {id:"edc",name:"EDC Orlando",where:"Orlando, Florida",featured:true,
-  genres:["EDM","Electronic","Mainstage"],grad:["#7A1FFF","#2BD2FF"],
+  genres:["EDM","Electronic"],grad:["#7A1FFF","#2BD2FF"],
   good:["Insomniac's full-tilt production \u2014 towering stages, fireworks, art cars, the whole 'Under the Electric Sky'.",
         "Famously inclusive 'All Are Welcome' PLUR culture \u2014 easy to feel embraced as a newcomer.",
         "Non-camping and ~25 min from the airport (MCO) \u2014 you sleep in a hotel, not a tent."],
@@ -329,7 +338,7 @@ const FESTS=[
   commu:{name:"r/EDC",url:"https://www.reddit.com/r/EDC/"},queer:{name:"Orlando queer scene",url:"https://www.reddit.com/r/orlando/"}},
 
  {id:"tml",name:"Tomorrowland",where:"Boom, Belgium",
-  genres:["EDM","Electronic","Mainstage"],grad:["#FF2E97","#7A1FFF"],
+  genres:["EDM","Electronic"],grad:["#FF2E97","#7A1FFF"],
   good:["Stage production is on another planet \u2014 people fly in just for the visuals.",
         "Wildly international, friendly crowd. Easy to go solo and make friends.",
         "'Global Journey' packages bundle your travel, pass and DreamVille camping \u2014 a soft landing for a first-timer."],
@@ -346,7 +355,7 @@ const FESTS=[
   commu:{name:"r/Tomorrowland",url:"https://www.reddit.com/r/Tomorrowland/"},queer:{name:"Queer ravers \u2014 r/aves",url:"https://www.reddit.com/r/aves/"}},
 
  {id:"glasto",name:"Glastonbury",where:"Worthy Farm, England",
-  genres:["Everything","Rock","Pop","Arts"],grad:["#FFB347","#48C46B"],
+  genres:["Multi-genre","Rock","Pop"],grad:["#FFB347","#48C46B"],
   good:["Not just music \u2014 theatre, circus, late-night fields, whole hidden worlds. The size of a small city.",
         "Every genre on Earth across dozens of stages. You'll discover your new favourite band by accident.",
         "Block9's NYC Downlow is a legendary queer venue right inside the festival."],
@@ -363,7 +372,7 @@ const FESTS=[
   commu:{name:"r/glastonbury_festival",url:"https://www.reddit.com/r/glastonbury_festival/"},queer:{name:"Block9 / NYC Downlow",url:"https://block9.com/"}},
 
  {id:"fuji",name:"Fuji Rock",where:"Naeba, Japan",
-  genres:["Rock","Eclectic","Outdoors"],grad:["#2BD2FF","#1E9E6A"],
+  genres:["Rock"],grad:["#2BD2FF","#1E9E6A"],
   good:["Set across a forested ski mountain \u2014 arguably the most beautiful festival on the planet.",
         "Famous for how clean, calm and respectful the crowd is. A gentle place to do your first big one.",
         "A free Thursday welcome party with fireworks kicks things off for early arrivals."],
@@ -380,7 +389,7 @@ const FESTS=[
   commu:{name:"r/festivals",url:"https://www.reddit.com/r/festivals/"},queer:{name:"Tokyo \u2014 Shinjuku Ni-ch\u014dme",url:"https://www.reddit.com/r/japanlife/"}},
 
  {id:"sziget",name:"Sziget",where:"Budapest, Hungary",
-  genres:["Everything","Electronic","Indie"],grad:["#FF2E97","#2BD2FF"],
+  genres:["Multi-genre","Electronic"],grad:["#FF2E97","#2BD2FF"],
   good:["A week-long 'Island of Freedom' on the Danube \u2014 around 95,000 a day, 50-odd venues, 600+ programs.",
         "One of the most open, inclusive crowds in Europe. Easy to feel at home fast.",
         "Budapest by day, festival by night \u2014 two trips in one, ~15 min by rail from the centre."],
@@ -397,7 +406,7 @@ const FESTS=[
   commu:{name:"r/festivals",url:"https://www.reddit.com/r/festivals/"},queer:{name:"Budapest queer scene",url:"https://www.reddit.com/r/budapest/"}},
 
  {id:"rir",name:"Rock in Rio",where:"Rio de Janeiro, Brazil",
-  genres:["Rock","Pop","Carnival energy"],grad:["#FFB347","#FF2E97"],
+  genres:["Rock","Pop"],grad:["#FFB347","#FF2E97"],
   good:["The biggest of the lot \u2014 700,000+ across seven days, with full-on carnival energy.",
         "Pair it with Rio itself: Christ the Redeemer, the beaches, the food. The trip sells itself.",
         "Stadium-scale global lineups across rock, pop and Brazilian legends."],
@@ -460,7 +469,10 @@ const CHECKLIST=["Register / set a ticket-sale reminder (the good ones sell out 
 
 let activeGenre="All";
 const homeEl=document.getElementById('home'),chipsEl=document.getElementById('chips');
-function allGenres(){const s=new Set(["All"]);FESTS.forEach(f=>f.genres.forEach(g=>s.add(g)));return[...s];}
+/* Broadest filter first, so the row reads from wide to narrow rather than in
+   whatever order the festivals happen to be listed. */
+function allGenres(){const n={};FESTS.forEach(f=>f.genres.forEach(g=>n[g]=(n[g]||0)+1));
+  return["All",...Object.keys(n).sort((a,b)=>n[b]-n[a]||a.localeCompare(b))];}
 function renderChips(){chipsEl.innerHTML=allGenres().map(g=>`<button class="chip" data-g="${g}" aria-pressed="${g===activeGenre}">${g}</button>`).join('');}
 function cardHTML(f){
   return `<div class="card" data-id="${f.id}">

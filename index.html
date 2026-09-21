@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Festival Passport</title>
-<meta name="description" content="A first-timer's launchpad to the world's great music festivals." />
+<title>Far Field</title>
+<meta name="description" content="Eight festivals worth planning a year around — three close to home, five worth crossing an ocean for — and how to actually get there." />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Festival Passport" />
+<meta name="apple-mobile-web-app-title" content="Far Field" />
 <meta name="theme-color" content="#0B0710" />
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230B0710'/%3E%3Ccircle cx='90' cy='78' r='34' fill='none' stroke='%23FF2E97' stroke-width='8'/%3E%3Ccircle cx='90' cy='78' r='12' fill='%232BD2FF'/%3E%3Crect x='80' y='44' width='8' height='40' rx='4' fill='%23FFB347' transform='rotate(20 90 78)'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,11 +35,13 @@
   body.lowpower .rig span{animation:none;}
   body.lowpower .rig{opacity:.4;}
 
-  .app{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:0 16px calc(96px + env(safe-area-inset-bottom));}
+  .app{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:0 20px calc(96px + env(safe-area-inset-bottom));}
   .eyebrow{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
   h1,h2,h3{font-family:"Unbounded",sans-serif;margin:0;line-height:1.02;letter-spacing:-.01em;}
   header{position:sticky;top:0;z-index:5;padding:calc(14px + env(safe-area-inset-top)) 0 10px;background:linear-gradient(var(--ink) 62%,transparent);}
-  .wordmark{font-family:"Unbounded";font-weight:800;font-size:26px;letter-spacing:-.02em;
+  .wmglow{position:absolute;left:-34px;top:calc(2px + env(safe-area-inset-top));width:230px;height:86px;pointer-events:none;
+    background:radial-gradient(52% 58% at 34% 50%,rgba(255,46,151,.30),rgba(255,179,71,.12) 58%,transparent 76%);filter:blur(16px);}
+  .wordmark{position:relative;font-family:"Unbounded";font-weight:800;font-size:26px;letter-spacing:-.02em;
     background:linear-gradient(92deg,var(--magenta),var(--amber),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;cursor:pointer;user-select:none;display:inline-block;}
   .tag{color:var(--muted);font-size:13px;margin-top:2px;}
   .chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none;}
@@ -62,12 +64,13 @@
   .star{position:absolute;top:12px;left:12px;z-index:2;background:rgba(11,7,16,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.28);color:#fff;font-family:"DM Mono";font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px;display:flex;align-items:center;gap:4px;}
   .g{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:3px 9px;border-radius:999px;}
 
-  .sheet{position:fixed;inset:0;z-index:20;background:var(--ink);overflow-y:auto;transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);padding:0 16px calc(40px + env(safe-area-inset-bottom));}
+  .sheet{position:fixed;inset:0;z-index:12;background:var(--ink);overflow-y:auto;transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);padding:0 20px calc(96px + env(safe-area-inset-bottom));}
   .sheet.open{transform:translateY(0);}
   .sheet .rig{position:absolute;}
   .sheetwrap{position:relative;z-index:1;max-width:560px;margin:0 auto;}
   .topbar{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:12px;padding:calc(14px + env(safe-area-inset-top)) 0 12px;background:linear-gradient(var(--ink) 70%,transparent);}
-  .back{background:var(--ink-2);border:1px solid var(--line);color:var(--text);width:40px;height:40px;border-radius:12px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .back{background:var(--ink-2);border:1px solid var(--line);color:var(--text);height:40px;padding:0 14px;border-radius:12px;
+    font-family:"DM Sans";font-weight:500;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:7px;white-space:nowrap;}
   .topbar .ttl{font-family:"Unbounded";font-weight:700;font-size:16px;text-transform:uppercase;}
   .hero{border-radius:var(--r);height:150px;display:flex;align-items:flex-end;padding:16px;margin-bottom:4px;position:relative;overflow:hidden;}
   .hero .pname{font-family:"Unbounded";font-weight:900;font-size:32px;text-transform:uppercase;color:#fff;line-height:.95;z-index:1;text-shadow:0 2px 24px rgba(0,0,0,.4);}
@@ -114,9 +117,9 @@
   .dedication b{color:var(--text);font-weight:500;}
   .enter{background:var(--text);color:var(--ink);border:none;padding:15px 30px;border-radius:999px;font-family:"DM Sans";font-weight:700;font-size:15px;cursor:pointer;}
 
-  nav{position:fixed;bottom:0;left:0;right:0;z-index:15;display:flex;justify-content:center;gap:6px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--ink) 38%);}
-  nav button{background:transparent;border:none;color:var(--muted);font-family:"DM Sans";font-weight:500;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 14px;cursor:pointer;border-radius:14px;}
-  nav button .ni{font-size:19px;line-height:1;}
+  nav{position:fixed;bottom:0;left:0;right:0;z-index:15;display:flex;justify-content:center;gap:2px;padding:8px 6px calc(8px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--ink) 30%,var(--ink));}
+  nav button{flex:1 1 0;min-width:0;max-width:78px;background:transparent;border:none;color:var(--muted);font-family:"DM Sans";font-weight:500;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px;cursor:pointer;border-radius:14px;}
+  nav button .ni{font-size:18px;line-height:1;}
   nav button[aria-current="true"]{color:var(--text);}
   nav button[aria-current="true"] .ni{filter:drop-shadow(0 0 8px var(--magenta));}
   nav .afters-nav[hidden]{display:none;}
@@ -146,11 +149,6 @@
   .safe h3{font-size:14px;text-transform:uppercase;margin-bottom:10px;}
   .toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:var(--text);color:var(--ink);padding:11px 20px;border-radius:999px;font-weight:700;font-size:13px;opacity:0;transition:.3s;z-index:40;pointer-events:none;}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-  .menu{position:absolute;top:calc(14px + env(safe-area-inset-top));right:0;background:var(--ink-2);border:1px solid var(--line);color:var(--text);width:40px;height:40px;border-radius:12px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:8;}
-  .menu-pop{position:absolute;top:calc(60px + env(safe-area-inset-top));right:0;background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:6px;z-index:9;min-width:190px;box-shadow:0 14px 44px rgba(0,0,0,.55);display:none;}
-  .menu-pop.open{display:block;}
-  .menu-pop button{display:flex;align-items:center;gap:11px;width:100%;background:transparent;border:none;color:var(--text);font-family:"DM Sans";font-weight:500;font-size:14px;padding:12px;border-radius:10px;cursor:pointer;text-align:left;}
-  .menu-pop button:active{background:var(--haze);}
   .leadp{color:var(--muted);font-size:14px;margin:6px 0 4px;}
   .dedibox{background:linear-gradient(92deg,rgba(255,46,151,.12),rgba(43,210,255,.07));border:1px solid rgba(255,46,151,.3);border-radius:var(--r);padding:16px;margin:14px 0 6px;font-size:13px;line-height:1.6;color:var(--text);}
   .dedibox b{color:#fff;}
@@ -173,25 +171,21 @@
 <div class="rig" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"></span></div>
 
 <div id="splash">
-  <div class="hi">Festival<br>Passport</div>
-  <p>Want to see more of the world? A shortlist of festivals worth crossing an ocean for &mdash; and how to actually go.</p>
+  <div class="hi">Far<br>Field</div>
+  <p>Eight festivals worth planning a year around &mdash; three close to home, five worth crossing an ocean for &mdash; and how to actually get there.</p>
   <div class="dedication">Built by <b>Patrick Yaeger</b></div>
   <button class="enter" id="enterBtn">Let's go &rarr;</button>
 </div>
 
 <div class="app">
   <header>
-    <button class="menu" id="menuBtn" aria-label="Menu">&#9776;</button>
-    <div class="menu-pop" id="menuPop">
-      <button data-go="guide">&#128214;&nbsp; Guide</button>
-      <button data-go="journeys">&#129517;&nbsp; Inner Journeys</button>
-    </div>
-    <span class="wordmark" id="wordmark" title="Festival Passport">Festival Passport</span>
-    <div class="tag">Your festival passport &middot; your picks, plus a world to explore</div>
+    <div class="wmglow" aria-hidden="true"></div>
+    <span class="wordmark" id="wordmark" title="Far Field">Far Field</span>
+    <div class="tag">Three close to home &middot; five across an ocean</div>
     <div class="chips" id="chips"></div>
   </header>
   <div id="songCard">
-    <div class="song-eyebrow">&#9834; A song for you</div>
+    <div class="song-eyebrow">&#9834; An original track</div>
     <div class="song-title">Twenty-Nine Fine</div>
     <div class="song-cap">A poignant, melodic deep Afro-house track &mdash; stripped-back and downtempo.</div>
     <audio controls preload="none" src="./twenty-nine-fine.mp3"></audio>
@@ -227,7 +221,7 @@
     <div class="dedibox">Built by <b>Patrick Yaeger</b>.</div>
     <section class="blk"><h3>The home screen</h3>
       <ul class="tips">
-        <li><b>Featured</b> (the &#9733; row up top): your three &mdash; Electric Forest, Lollapalooza, EDC Orlando.</li>
+        <li><b>Featured</b> (the &#9733; row up top): the three closest to home &mdash; Electric Forest, Lollapalooza, EDC Orlando.</li>
         <li><b>Bucket list</b>: five worth crossing an ocean for.</li>
         <li>The <b>chips</b> across the top filter the list by vibe. Tap any card to open it.</li>
       </ul></section>
@@ -241,10 +235,10 @@
       <ul class="tips">
         <li><b>&#10024; Match</b> &mdash; four questions, and it picks your festival.</li>
         <li><b>&#127890; Kit</b> &mdash; a first-festival checklist; your ticks save on that phone.</li>
-        <li><b>&#129517; Inner Journeys</b> (in this menu) &mdash; copy-paste prompts that turn any AI into a personal interviewer.</li>
+        <li><b>&#129517; Inner Journeys</b> (in the bottom bar) &mdash; copy-paste prompts that turn any AI into a personal interviewer.</li>
       </ul></section>
     <section class="blk"><h3>&#127769; The Afters &mdash; your secret tab</h3>
-      <p class="leadp">Hidden on purpose. To unlock it: <b>triple-tap the &ldquo;Festival Passport&rdquo; title</b> at the top of the home screen. A new Afters button appears in the bottom bar and stays there. Inside: the after-hours and LGBTQ+ scene around each festival, plus safe-connecting tips.</p></section>
+      <p class="leadp">Hidden on purpose. To unlock it: <b>triple-tap the &ldquo;Far Field&rdquo; title</b> at the top of the home screen. A new Afters button appears in the bottom bar and stays there. Inside: the after-hours and LGBTQ+ scene around each festival, plus safe-connecting tips.</p></section>
     <section class="blk"><h3>Honest notes</h3>
       <ul class="tips">
         <li>Prices and projected dates are approximate &mdash; confirm officially before booking.</li>
@@ -264,7 +258,7 @@
 <div class="sheet" id="sheet">
   <div class="rig" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"></span></div>
   <div class="sheetwrap">
-    <div class="topbar"><button class="back" id="backBtn" aria-label="Back">&larr;</button><span class="ttl" id="sheetTitle"></span></div>
+    <div class="topbar"><button class="back" id="backBtn">&larr; Festivals</button><span class="ttl" id="sheetTitle"></span></div>
     <div id="sheetBody"></div>
   </div>
 </div>
@@ -273,6 +267,8 @@
   <button data-go="home" aria-current="true"><span class="ni">&#127914;</span>Festivals</button>
   <button data-go="quiz"><span class="ni">&#10024;</span>Match</button>
   <button data-go="check"><span class="ni">&#127890;</span>Kit</button>
+  <button data-go="journeys"><span class="ni">&#129517;</span>Journeys</button>
+  <button data-go="guide"><span class="ni">&#128214;</span>Guide</button>
   <button class="afters-nav" data-go="afters" hidden><span class="ni">&#127769;</span>Afters</button>
 </nav>
 <div class="toast" id="toast"></div>
@@ -281,7 +277,7 @@
 const store={get(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
 
 const FESTS=[
- {id:"ef",name:"Electric Forest",where:"Rothbury, Michigan",next:"Jun 2026",cd:"2026-06-25T15:00:00",featured:true,
+ {id:"ef",name:"Electric Forest",where:"Rothbury, Michigan",featured:true,
   genres:["EDM","Electronic","Jam Band"],grad:["#48C46B","#7A1FFF"],
   good:["A forest turned into a glowing dreamworld \u2014 hidden art, surprise sets, sunrise yoga to 4am raves.",
         "The 'Forest Family' is famously tight-knit, kind and inclusive. A great first big one to go to solo.",
@@ -294,11 +290,11 @@ const FESTS=[
         "Sign up for loyalty / on-sale alerts so you don't miss tickets."],
   cost:"\u2248 $450+ 4-day GA",costNote:"Face GA + camping; resale runs higher. Via AXS. All ages. Confirm live.",
   ticket:"Tickets via AXS; passes sell out \u2014 sign up for on-sale alerts.",
-  editions:[["2026","Jun 25\u201328","c"],["2027","Late June (projected)","p"],["2028","Late June (projected)","p"],["2029","Late June (projected)","p"],["2030","Late June (projected)","p"]],
+  editions:[["2026","Jun 25\u201328","c","2026-06-25","2026-06-28"],["2027","Late June (projected)","p","2027-06-25","2027-06-28"],["2028","Late June (projected)","p","2028-06-25","2028-06-28"],["2029","Late June (projected)","p","2029-06-25","2029-06-28"],["2030","Late June (projected)","p","2030-06-25","2030-06-28"]],
   spotify:"Electric Forest",official:"https://www.electricforest.com/",schedule:"https://www.electricforest.com/lineup/",
   commu:{name:"r/electricforest",url:"https://www.reddit.com/r/electricforest/"},queer:{name:"Forest Family \u2014 r/aves",url:"https://www.reddit.com/r/aves/"}},
 
- {id:"lolla",name:"Lollapalooza",where:"Chicago, USA",next:"Jul 2026",cd:"2026-07-30T11:00:00",featured:true,
+ {id:"lolla",name:"Lollapalooza",where:"Chicago, USA",featured:true,
   genres:["Everything","Pop","Hip-Hop","Electronic"],grad:["#FFB347","#2BD2FF"],
   good:["170+ artists across eight stages, every genre going, with the Chicago skyline and Lake Michigan behind it.",
         "Right downtown \u2014 no camping, just walk in from a hotel and back to a real bed.",
@@ -311,11 +307,11 @@ const FESTS=[
         "Single-day tickets are perfect if four days feels like a lot."],
   cost:"\u2248 $400+ 4-day GA",costNote:"Single-day from ~$150; resale much higher. Via lollapalooza.com. All ages. Confirm live.",
   ticket:"As of 2026, 4-day passes were on a waitlist; single-day and resale options remained.",
-  editions:[["2026","Jul 30 \u2013 Aug 2","c"],["2027","Late July / early Aug (projected)","p"],["2028","Late July / early Aug (projected)","p"],["2029","Late July / early Aug (projected)","p"],["2030","Late July / early Aug (projected)","p"]],
+  editions:[["2026","Jul 30 \u2013 Aug 2","c","2026-07-30","2026-08-02"],["2027","Late July / early Aug (projected)","p","2027-07-30","2027-08-02"],["2028","Late July / early Aug (projected)","p","2028-07-30","2028-08-02"],["2029","Late July / early Aug (projected)","p","2029-07-30","2029-08-02"],["2030","Late July / early Aug (projected)","p","2030-07-30","2030-08-02"]],
   spotify:"Lollapalooza",official:"https://www.lollapalooza.com/",schedule:"https://www.lollapalooza.com/lineup",
   commu:{name:"r/Lollapalooza",url:"https://www.reddit.com/r/Lollapalooza/"},queer:{name:"Chicago \u2014 Northalsted scene",url:"https://www.reddit.com/r/chicago/"}},
 
- {id:"edc",name:"EDC Orlando",where:"Orlando, Florida",next:"Nov 2026",cd:"2026-11-06T13:00:00",featured:true,
+ {id:"edc",name:"EDC Orlando",where:"Orlando, Florida",featured:true,
   genres:["EDM","Electronic","Mainstage"],grad:["#7A1FFF","#2BD2FF"],
   good:["Insomniac's full-tilt production \u2014 towering stages, fireworks, art cars, the whole 'Under the Electric Sky'.",
         "Famously inclusive 'All Are Welcome' PLUR culture \u2014 easy to feel embraced as a newcomer.",
@@ -328,11 +324,11 @@ const FESTS=[
         "Passes are on layaway via Front Gate; lineup usually drops Sept/Oct."],
   cost:"\u2248 $220+ 3-day GA",costNote:"GA+ ~$300, VIP ~$420 (early-bird); layaway via Front Gate. 18+ (21+ VIP), ID required. Confirm live.",
   ticket:"3-day GA/GA+/VIP via Front Gate with layaway; 2026 lineup typically announced Sept/Oct.",
-  editions:[["2026","Nov 6\u20138","c"],["2027","Early November (projected)","p"],["2028","Early November (projected)","p"],["2029","Early November (projected)","p"],["2030","Early November (projected)","p"]],
+  editions:[["2026","Nov 6\u20138","c","2026-11-06","2026-11-08"],["2027","Early November (projected)","p","2027-11-06","2027-11-08"],["2028","Early November (projected)","p","2028-11-06","2028-11-08"],["2029","Early November (projected)","p","2029-11-06","2029-11-08"],["2030","Early November (projected)","p","2030-11-06","2030-11-08"]],
   spotify:"EDC Orlando",official:"https://orlando.electricdaisycarnival.com/",schedule:"https://orlando.electricdaisycarnival.com/lineup/",
   commu:{name:"r/EDC",url:"https://www.reddit.com/r/EDC/"},queer:{name:"Orlando queer scene",url:"https://www.reddit.com/r/orlando/"}},
 
- {id:"tml",name:"Tomorrowland",where:"Boom, Belgium",next:"Jul 2026",cd:"2026-07-17T12:00:00",
+ {id:"tml",name:"Tomorrowland",where:"Boom, Belgium",
   genres:["EDM","Electronic","Mainstage"],grad:["#FF2E97","#7A1FFF"],
   good:["Stage production is on another planet \u2014 people fly in just for the visuals.",
         "Wildly international, friendly crowd. Easy to go solo and make friends.",
@@ -345,11 +341,11 @@ const FESTS=[
         "Fly into Brussels (BRU); the train from Brussels to Boom is about 40\u201350 minutes."],
   cost:"\u2248 \u20ac400 Full Madness (weekend)",costNote:"Day Pass from ~\u20ac153; comfort tiers & packages far higher. Strictly 18+. Confirm live.",
   ticket:"As of June 2026, 2026 passes are largely sold out \u2014 resale only, or aim for 2027.",
-  editions:[["2026","Jul 17\u201319 & 24\u201326","c"],["2027","Jul 16\u201318 & 23\u201325","c"],["2028","Late July (projected)","p"],["2029","Late July (projected)","p"],["2030","Late July (projected)","p"]],
+  editions:[["2026","Jul 17\u201319 & 24\u201326","c","2026-07-17","2026-07-26"],["2027","Jul 16\u201318 & 23\u201325","c","2027-07-16","2027-07-25"],["2028","Late July (projected)","p","2028-07-16","2028-07-25"],["2029","Late July (projected)","p","2029-07-16","2029-07-25"],["2030","Late July (projected)","p","2030-07-16","2030-07-25"]],
   spotify:"Tomorrowland",official:"https://www.tomorrowland.com/",schedule:"https://www.tomorrowland.com/en/festival/line-up",
   commu:{name:"r/Tomorrowland",url:"https://www.reddit.com/r/Tomorrowland/"},queer:{name:"Queer ravers \u2014 r/aves",url:"https://www.reddit.com/r/aves/"}},
 
- {id:"glasto",name:"Glastonbury",where:"Worthy Farm, England",next:"Jun 2027",cd:"2027-06-23T10:00:00",
+ {id:"glasto",name:"Glastonbury",where:"Worthy Farm, England",
   genres:["Everything","Rock","Pop","Arts"],grad:["#FFB347","#48C46B"],
   good:["Not just music \u2014 theatre, circus, late-night fields, whole hidden worlds. The size of a small city.",
         "Every genre on Earth across dozens of stages. You'll discover your new favourite band by accident.",
@@ -362,11 +358,11 @@ const FESTS=[
         "Stop trying to make a schedule. Wander. That's the whole point."],
   cost:"\u2248 \u00a3375 + booking fee",costNote:"2025 was \u00a3373.50 + \u00a35; 2027 price TBC. Paid in instalments. Confirm live.",
   ticket:"2026 is a fallow year \u2014 no festival. Next: 23\u201327 June 2027; tickets expected on sale ~Oct/Nov 2026.",
-  editions:[["2026","No festival (fallow year)","n"],["2027","Jun 23\u201327","c"],["2028","Late June (projected)","p"],["2029","Late June (projected)","p"],["2030","Late June (projected)","p"]],
+  editions:[["2026","No festival (fallow year)","n"],["2027","Jun 23\u201327","c","2027-06-23","2027-06-27"],["2028","Late June (projected)","p","2028-06-23","2028-06-27"],["2029","Late June (projected)","p","2029-06-23","2029-06-27"],["2030","Late June (projected)","p","2030-06-23","2030-06-27"]],
   spotify:"Glastonbury",official:"https://www.glastonburyfestivals.co.uk/",schedule:"https://www.glastonburyfestivals.co.uk/line-up/",
   commu:{name:"r/glastonbury_festival",url:"https://www.reddit.com/r/glastonbury_festival/"},queer:{name:"Block9 / NYC Downlow",url:"https://block9.com/"}},
 
- {id:"fuji",name:"Fuji Rock",where:"Naeba, Japan",next:"Jul 2026",cd:"2026-07-24T10:00:00",
+ {id:"fuji",name:"Fuji Rock",where:"Naeba, Japan",
   genres:["Rock","Eclectic","Outdoors"],grad:["#2BD2FF","#1E9E6A"],
   good:["Set across a forested ski mountain \u2014 arguably the most beautiful festival on the planet.",
         "Famous for how clean, calm and respectful the crowd is. A gentle place to do your first big one.",
@@ -379,11 +375,11 @@ const FESTS=[
         "Build a Tokyo trip around it \u2014 you're flying that far anyway."],
   cost:"\u2248 \u00a559,000 three-day (~$370)",costNote:"1-day ~\u00a526,000; under-22 ~\u00a518,000; under-15 free with an adult. Confirm live.",
   ticket:"As of June 2026, 3-day and Saturday general-admission passes had sold out; Friday/Sunday and Friday-night tickets remained.",
-  editions:[["2026","Jul 24\u201326","c"],["2027","Late July (projected)","p"],["2028","Late July (projected)","p"],["2029","Late July (projected)","p"],["2030","Late July (projected)","p"]],
+  editions:[["2026","Jul 24\u201326","c","2026-07-24","2026-07-26"],["2027","Late July (projected)","p","2027-07-24","2027-07-26"],["2028","Late July (projected)","p","2028-07-24","2028-07-26"],["2029","Late July (projected)","p","2029-07-24","2029-07-26"],["2030","Late July (projected)","p","2030-07-24","2030-07-26"]],
   spotify:"Fuji Rock",official:"https://www.fujirockfestival.com/en/",schedule:"https://www.fujirockfestival.com/en/artist/",
   commu:{name:"r/festivals",url:"https://www.reddit.com/r/festivals/"},queer:{name:"Tokyo \u2014 Shinjuku Ni-ch\u014dme",url:"https://www.reddit.com/r/japanlife/"}},
 
- {id:"sziget",name:"Sziget",where:"Budapest, Hungary",next:"Aug 2026",cd:"2026-08-11T12:00:00",
+ {id:"sziget",name:"Sziget",where:"Budapest, Hungary",
   genres:["Everything","Electronic","Indie"],grad:["#FF2E97","#2BD2FF"],
   good:["A week-long 'Island of Freedom' on the Danube \u2014 around 95,000 a day, 50-odd venues, 600+ programs.",
         "One of the most open, inclusive crowds in Europe. Easy to feel at home fast.",
@@ -396,11 +392,11 @@ const FESTS=[
         "Work in Budapest's thermal baths for the best recovery in Europe."],
   cost:"\u2248 \u20ac350+ 5-day pass",costNote:"Day tickets cheaper; 5-month instalment plans offered. All ages. Confirm live.",
   ticket:"On sale now with instalment plans. 5-day and day passes available.",
-  editions:[["2026","Aug 11\u201315","c"],["2027","Mid-August (projected)","p"],["2028","Mid-August (projected)","p"],["2029","Mid-August (projected)","p"],["2030","Mid-August (projected)","p"]],
+  editions:[["2026","Aug 11\u201315","c","2026-08-11","2026-08-15"],["2027","Mid-August (projected)","p","2027-08-11","2027-08-15"],["2028","Mid-August (projected)","p","2028-08-11","2028-08-15"],["2029","Mid-August (projected)","p","2029-08-11","2029-08-15"],["2030","Mid-August (projected)","p","2030-08-11","2030-08-15"]],
   spotify:"Sziget",official:"https://szigetfestival.com/en",schedule:"https://szigetfestival.com/en/lineup",
   commu:{name:"r/festivals",url:"https://www.reddit.com/r/festivals/"},queer:{name:"Budapest queer scene",url:"https://www.reddit.com/r/budapest/"}},
 
- {id:"rir",name:"Rock in Rio",where:"Rio de Janeiro, Brazil",next:"Sep 2026",cd:"2026-09-04T16:00:00",
+ {id:"rir",name:"Rock in Rio",where:"Rio de Janeiro, Brazil",
   genres:["Rock","Pop","Carnival energy"],grad:["#FFB347","#FF2E97"],
   good:["The biggest of the lot \u2014 700,000+ across seven days, with full-on carnival energy.",
         "Pair it with Rio itself: Christ the Redeemer, the beaches, the food. The trip sells itself.",
@@ -413,7 +409,7 @@ const FESTS=[
         "Learn five Portuguese phrases \u2014 locals open right up when you try."],
   cost:"\u2248 R$870 / day (general)",costNote:"~R$435 half-price; no camping. Confirm on the official site.",
   ticket:"2026 pre-sale broke records; common tickets via Ticketmaster Brasil \u2014 buy early.",
-  editions:[["2026","Sep 4\u20137 & 11\u201313","c"],["2027","No Rio edition (biennial)","n"],["2028","September (projected)","p"],["2029","No Rio edition (biennial)","n"],["2030","September (projected)","p"]],
+  editions:[["2026","Sep 4\u20137 & 11\u201313","c","2026-09-04","2026-09-13"],["2027","No Rio edition (biennial)","n"],["2028","September (projected)","p","2028-09-04","2028-09-13"],["2029","No Rio edition (biennial)","n"],["2030","September (projected)","p","2030-09-04","2030-09-13"]],
   spotify:"Rock in Rio",official:"https://rockinrio.com/rio/en/",schedule:"https://rockinrio.com/rio/en/lineup/",
   commu:{name:"r/festivals",url:"https://www.reddit.com/r/festivals/"},queer:{name:"Rio \u2014 Ipanema scene",url:"https://www.reddit.com/r/rio/"}}
 ];
@@ -470,7 +466,7 @@ function cardHTML(f){
   return `<div class="card" data-id="${f.id}">
     <div class="poster" style="background:linear-gradient(135deg,${f.grad[0]},${f.grad[1]})">
       ${f.featured?'<span class="star">\u2605 Featured</span>':''}<div class="pname">${f.name}</div></div>
-    <div class="meta"><span class="where">${f.where}</span><span class="when">Next: ${f.next}</span></div>
+    <div class="meta"><span class="where">${f.where}</span><span class="when">Next: ${nextLabel(f)}</span></div>
     <div class="gchips">${f.genres.map(g=>`<span class="g">${g}</span>`).join('')}</div></div>`;
 }
 function renderHome(){
@@ -482,19 +478,47 @@ function renderHome(){
   homeEl.innerHTML=html;
 }
 
-function cdParts(iso){const diff=new Date(iso)-new Date();if(diff<=0)return null;
+/* Editions are the only place dates live: [year, text, grade, start, end].
+   grade c = announced by the organisers, p = the festival's usual window (projected,
+   anchored on the confirmed edition's month and day), n = no edition that year — a
+   fallow year or a biennial gap, which is why the next edition cannot just be
+   "this month next year". */
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function edDate(v){if(!v)return null;const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2]);}
+function nextEdition(f,now){
+  now=now||new Date();
+  for(let i=0;i<f.editions.length;i++){const e=f.editions[i];
+    if(e[2]==="n")continue;
+    const start=edDate(e[3]),end=edDate(e[4]);if(!start||!end)continue;
+    /* an edition stays the "next" one until the day after it ends */
+    const over=new Date(end.getFullYear(),end.getMonth(),end.getDate()+1);
+    if(over>now)return{year:e[0],text:e[1],grade:e[2],start:start,live:start<=now};}
+  return null;
+}
+function nextLabel(f){const e=nextEdition(f);if(!e)return"see official site";
+  if(e.live)return"on now";
+  return MON[e.start.getMonth()]+" "+e.start.getFullYear()+(e.grade==="p"?" (est.)":"");}
+function cdParts(when){const diff=when-new Date();if(diff<=0)return null;
   return{d:Math.floor(diff/864e5),h:Math.floor(diff/36e5)%24,m:Math.floor(diff/6e4)%60,s:Math.floor(diff/1e3)%60};}
 let cdTimer=null;
-function startCountdown(iso,el){
-  function tick(){const p=cdParts(iso);
-    if(!p){el.innerHTML='<div class="approx">Check the official site for the next confirmed date.</div>';return;}
+function startCountdown(f,el){
+  clearInterval(cdTimer);
+  const e=nextEdition(f);
+  if(!e){el.innerHTML='<div class="approx">No further editions listed here \u2014 check the official site.</div>';return;}
+  const onNow=()=>{el.innerHTML=`<div class="approx"><b>Happening now</b> \u00b7 ${e.text}</div>`;clearInterval(cdTimer);};
+  if(e.live){onNow();return;}
+  const note=e.grade==="c"
+    ?`\u2191 to the confirmed ${e.year} edition \u00b7 always reconfirm on the official site`
+    :`\u2191 to the festival\u2019s usual ${e.year} window \u2014 <b>projected</b>, not yet announced. Confirm before booking anything.`;
+  function tick(){const p=cdParts(e.start);
+    if(!p){onNow();return;}
     el.innerHTML=`<div class="count">
       <div class="u"><b>${p.d}</b><small>days</small></div>
       <div class="u"><b>${String(p.h).padStart(2,'0')}</b><small>hrs</small></div>
       <div class="u"><b>${String(p.m).padStart(2,'0')}</b><small>min</small></div>
       <div class="u"><b>${String(p.s).padStart(2,'0')}</b><small>sec</small></div></div>
-      <div class="approx">\u2191 to the next confirmed edition \u00b7 always reconfirm on the official site</div>`;}
-  tick();clearInterval(cdTimer);cdTimer=setInterval(tick,1000);
+      <div class="approx">${note}</div>`;}
+  tick();cdTimer=setInterval(tick,1000);
 }
 
 const sheet=document.getElementById('sheet');
@@ -504,7 +528,7 @@ function openFest(id){
   const bmap={c:"Confirmed",p:"Projected",n:"No festival"};
   document.getElementById('sheetBody').innerHTML=`
     <div class="hero" style="background:linear-gradient(135deg,${f.grad[0]},${f.grad[1]})"><div class="pname">${f.name}</div></div>
-    <div class="place">${f.where} \u00b7 next edition ${f.next}</div>
+    <div class="place">${f.where} \u00b7 next edition ${nextLabel(f)}</div>
     <div id="cd"></div>
     <section class="blk"><h3>Real Talk</h3>
       ${f.good.map(t=>`<div class="rt good"><span class="ic">\u2705</span><span>${t}</span></div>`).join('')}
@@ -526,10 +550,18 @@ function openFest(id){
     <section class="blk"><h3>Find your people</h3><div class="commu">
       <a href="${f.commu.url}" target="_blank" rel="noopener">&#128172; ${f.commu.name}</a>
       <a class="pride" href="${f.queer.url}" target="_blank" rel="noopener">&#127987;&#65039;&#8205;&#127752; ${f.queer.name}</a></div></section>`;
+  const wasOpen=sheet.classList.contains('open');
   sheet.scrollTop=0;sheet.classList.add('open');
-  startCountdown(f.cd,document.getElementById('cd'));
+  startCountdown(f,document.getElementById('cd'));
+  /* one history entry per opened sheet, so the phone's Back gesture closes it
+     instead of leaving the app */
+  if(!wasOpen){try{history.pushState({fest:id},'');}catch(e){}}
 }
-function closeFest(){sheet.classList.remove('open');clearInterval(cdTimer);}
+function closeSheet(){sheet.classList.remove('open');clearInterval(cdTimer);}
+function closeFest(){
+  if(history.state&&history.state.fest){history.back();return;} /* popstate closes it */
+  closeSheet();
+}
 
 const answers={};
 function renderQuiz(){
@@ -542,7 +574,7 @@ function showResult(){
   Object.entries(answers).forEach(([qi,oi])=>{Object.entries(QUIZ[qi].opts[oi].s).forEach(([id,v])=>score[id]+=v);});
   const win=Object.entries(score).sort((a,b)=>b[1]-a[1])[0][0];const f=FESTS.find(x=>x.id===win);
   document.getElementById('quizResult').innerHTML=`<div class="result"><div class="eyebrow">Your match</div><h2>${f.name}</h2>
-    <p style="color:var(--muted);font-size:14px;margin:6px 0 14px;">${f.where} \u00b7 next ${f.next}</p>
+    <p style="color:var(--muted);font-size:14px;margin:6px 0 14px;">${f.where} \u00b7 next ${nextLabel(f)}</p>
     <button class="enter" id="seeMatch">See the full lowdown &rarr;</button></div>`;
   document.getElementById('seeMatch').onclick=()=>openFest(win);
 }
@@ -556,7 +588,7 @@ function go(name){
   document.querySelectorAll('nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===name));
   document.querySelector('header .chips').style.display=name==='home'?'flex':'none';
   document.getElementById('songCard').style.display=name==='home'?'block':'none';
-  document.getElementById('menuPop').classList.remove('open');
+  if(sheet.classList.contains('open'))closeFest();
   window.scrollTo(0,0);
 }
 
@@ -615,9 +647,8 @@ document.getElementById('backBtn').onclick=closeFest;
 document.getElementById('quizBody').onclick=e=>{const o=e.target.closest('.opt');if(!o)return;answers[o.dataset.q]=+o.dataset.o;renderQuiz();};
 document.getElementById('checkBody').onclick=e=>{const c=e.target.closest('.check');if(!c)return;const i=c.dataset.i,done=store.get('kit')||{};done[i]=!done[i];store.set('kit',done);c.dataset.done=!!done[i];};
 document.getElementById('nav').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.go);};
-document.getElementById('menuBtn').onclick=e=>{e.stopPropagation();document.getElementById('menuPop').classList.toggle('open');};
-document.getElementById('menuPop').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.go);};
-document.addEventListener('click',e=>{const pop=document.getElementById('menuPop');if(pop.classList.contains('open')&&!e.target.closest('#menuPop')&&!e.target.closest('#menuBtn'))pop.classList.remove('open');});
+window.addEventListener('popstate',()=>{if(sheet.classList.contains('open'))closeSheet();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sheet.classList.contains('open'))closeFest();});
 document.getElementById('journeysBody').onclick=e=>{const b=e.target.closest('.copybtn');if(b)copyText(buildPrompt(JOURNEYS[+b.dataset.j]));};
 let taps=0,tapT=null;
 document.getElementById('wordmark').addEventListener('click',()=>{taps++;clearTimeout(tapT);tapT=setTimeout(()=>taps=0,600);if(taps>=3){taps=0;revealAfters();go('afters');}});

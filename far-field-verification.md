@@ -1,4 +1,4 @@
-Festival Passport — Claims Verification & Deployment Notes
+Far Field — Claims Verification & Deployment Notes
 Prepared June 2026. This document is the evidence file for the app. It is intentionally kept separate from the app itself so the app stays clean and this stays auditable. Confidence labels: H = high, M = medium, L = low (L/M explained).
 1. Device compatibility
 Claim
@@ -163,7 +163,7 @@ New "Inner Journeys" page (same header menu): six copy-paste prompts that turn a
 Copy buttons use the Clipboard API with a hidden-textarea fallback for older iOS Safari. (M — clipboard behaviour varies by iOS version; fallback covers the gap.)
 Navigation: bottom bar unchanged (Festivals · Match · Kit · Afters-when-unlocked); Guide and Inner Journeys live in the header menu to avoid overcrowding the bar. (H)
 Service worker bumped to v5. Re-upload both files to GitHub; phones refresh on next online open. (H)
-The Afters access (for reference): triple-tap the "Festival Passport" title on the home screen. Now also documented inside the in-app Guide. (H)
+The Afters access (for reference): triple-tap the "Far Field" title on the home screen. Now also documented inside the in-app Guide. (H)
 8. Live ticket prices verified (June 2026)
 Face-value/official figures where available; resale marketplaces run higher and are excluded. All remain approximate and the app links out to confirm.
 Festival
@@ -214,3 +214,97 @@ own work. The track was generated with Suno by Patrick Yaeger.
 
 Earlier commits in this repository still contain the removed photograph and
 name. Removing them there requires rewriting history.
+
+---
+
+## Version 4 — renamed *Far Field*, one navigation bar (September 2026)
+
+**Name.** The app is now **Far Field**. Changed in the `<title>`, the
+`apple-mobile-web-app-title`, the meta description, the splash screen, the
+header wordmark, the in-app Guide, the service worker and this document's
+title. The Afters easter egg is now a triple-tap on the "Far Field" wordmark.
+The GitHub repository and its Pages URL are still `keons-playlist`. (H)
+
+**Composition, stated plainly.** Eight festivals: **three in the US** —
+Electric Forest (Michigan), Lollapalooza (Chicago), EDC Orlando — which are
+also the three Featured picks, and **five abroad** — Tomorrowland, Glastonbury,
+Fuji Rock, Sziget, Rock in Rio. Earlier copy described the app as being about
+"crossing an ocean," which describes only the five. (H — counted from the
+`FESTS` array.)
+
+**Navigation.** The header menu is gone. Guide and Inner Journeys moved into
+the bottom bar, which now carries Festivals · Match · Kit · Journeys · Guide,
+plus Afters once unlocked. Measured at 320, 360 and 390 px viewport widths
+with all six buttons shown: no overflow, no horizontal page scroll. (H —
+measured in headless Chromium.)
+
+**Getting out of a festival page.** Three ways now, where there was one:
+- the bottom bar stays visible over an open festival page (its `z-index`
+  dropped below the bar's, and its bottom padding clears it);
+- the back control is labelled **← Festivals** rather than a bare arrow;
+- opening a festival pushes a history entry, so the phone's Back gesture and
+  the Escape key close the page instead of leaving the app. (H — all three
+  verified in headless Chromium, including `history.back()`.)
+
+**Gutter.** The page gutter went from 16 px to 20 px, and a soft radial glow
+sits behind the wordmark. The wordmark is gradient-filled text with no
+background of its own, so at 16 px its ink sat on the gutter line while
+adjacent cards' content began further in. (H)
+
+**Service worker bumped to v10** (`far-field-v10`). Installed phones pull the
+new version on their next online open. (H)
+
+### Dates now derive from the editions table
+
+Previously each festival carried a hard-coded `cd` countdown timestamp and a
+hard-coded `next` display string, independent of the Dates table below them.
+By 2026-09-20 six of the eight `cd` values had already passed — Electric Forest
+(2026-06-25), Tomorrowland (2026-07-17), Fuji Rock (2026-07-24), Lollapalooza
+(2026-07-30), Sziget (2026-08-11) and Rock in Rio (2026-09-04) — so those six
+showed the fallback line *"Check the official site for the next confirmed date"*
+instead of a countdown. Only EDC Orlando and Glastonbury still counted down. (H)
+
+Both fields are gone. Each edition row is now
+`[year, text, grade, start, end]`, and the next edition, the countdown target
+and every "Next:" label are computed from it. There is one source of dates in
+the app, and it is the same table the user reads. (H)
+
+**Projected dates are anchored on the confirmed edition's month and day.**
+Electric Forest's 2027–2030 rows count down to 25 June of each year because the
+confirmed 2026 edition ran 25–28 June. These are *derived*, not sourced: the
+row text still reads "Late June (projected)", the card label reads
+"Jun 2027 (est.)", and the countdown reads *"to the festival's usual 2027
+window — projected, not yet announced. Confirm before booking anything."*
+A projected countdown is a guess with a clock on it and is labelled as one. (Derived)
+
+**Fallow and biennial years are skipped, not counted.** A plain "same window,
+next year" rule would be wrong for two of the eight: Glastonbury takes fallow
+years and Rock in Rio's Rio edition is biennial. Both already had `n` rows in
+the table, and the next-edition search skips them. Verified by simulation: on
+2026-09-21 Rock in Rio resolves to **2028**, not 2027. (H)
+
+**An edition stays "next" until the day after it ends**, so a festival reads
+*"Happening now"* while it runs rather than flipping to next year on opening
+day. Verified at a simulated 2026-06-26: Electric Forest resolves to the live
+2026 edition. (H)
+
+#### Verified by simulation
+
+Next-edition resolution was checked for all eight festivals at six simulated
+dates — 2026-09-21, 2026-06-26, 2026-11-07, 2027-07-01, 2028-01-01 and
+2031-01-01 — in headless Chromium, with no page errors. Results on
+2026-09-21: EDC Orlando Nov 2026 (confirmed), Tomorrowland Jul 2027
+(confirmed), Glastonbury Jun 2027 (confirmed), the other five projected,
+Rock in Rio correctly at 2028. (H)
+
+#### The remaining cliff
+
+The editions tables end at 2030. From 1 January 2031 every festival resolves
+to no edition and shows *"No further editions listed here — check the official
+site."* The app degrades to an honest message rather than a wrong date, but it
+does stop being useful on that date unless the tables are extended. (H)
+
+#### Still stale
+
+The ticket figures in section 8 were verified in June 2026 and are three months
+old. Nothing in this release re-verified them; they remain M — volatile.

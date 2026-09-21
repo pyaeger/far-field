@@ -1,7 +1,7 @@
 # Far Field
 
 A single-page, offline-capable festival guide for mobile phones. Eight festivals
-worth planning a year around — three close to home, five worth cruising an ocean
+worth planning a year around — three close to home, five worth crossing an ocean
 for — what each one is actually like, and how to get there.
 
 - **Live app:** https://pyaeger.github.io/keons-playlist/

@@ -3,7 +3,7 @@
    Strategy: network-first for the page (so updates land), cache-first for everything
    else (fonts, etc.), with a cached fallback when there's no connection. */
 
-const CACHE = 'far-field-v9';
+const CACHE = 'far-field-v10';
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();

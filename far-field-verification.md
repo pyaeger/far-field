@@ -251,22 +251,60 @@ sits behind the wordmark. The wordmark is gradient-filled text with no
 background of its own, so at 16 px its ink sat on the gutter line while
 adjacent cards' content began further in. (H)
 
-**Service worker bumped to v9** (`far-field-v9`). Installed phones pull the
+**Service worker bumped to v10** (`far-field-v10`). Installed phones pull the
 new version on their next online open. (H)
 
-### Known staleness at the time of this change — 2026-09-20
+### Dates now derive from the editions table
 
-Six of the eight countdown targets have already passed: Electric Forest
+Previously each festival carried a hard-coded `cd` countdown timestamp and a
+hard-coded `next` display string, independent of the Dates table below them.
+By 2026-09-20 six of the eight `cd` values had already passed — Electric Forest
 (2026-06-25), Tomorrowland (2026-07-17), Fuji Rock (2026-07-24), Lollapalooza
-(2026-07-30), Sziget (2026-08-11) and Rock in Rio (2026-09-04). Those six show
-the fallback line *"Check the official site for the next confirmed date"*
-rather than a live countdown. Only EDC Orlando (2026-11-06) and Glastonbury
-(2027-06-23) still count down. (H — computed against the hard-coded `cd`
-values.)
+(2026-07-30), Sziget (2026-08-11) and Rock in Rio (2026-09-04) — so those six
+showed the fallback line *"Check the official site for the next confirmed date"*
+instead of a countdown. Only EDC Orlando and Glastonbury still counted down. (H)
 
-The ticket figures in section 8 were verified in June 2026 and are three
-months old. Nothing in this release re-verified them.
+Both fields are gone. Each edition row is now
+`[year, text, grade, start, end]`, and the next edition, the countdown target
+and every "Next:" label are computed from it. There is one source of dates in
+the app, and it is the same table the user reads. (H)
 
-This is a property of the design: the countdown targets are hard-coded
-timestamps rather than recurring windows, so the app's headline feature
-decays on a fixed schedule. It is recorded here rather than fixed. (H)
+**Projected dates are anchored on the confirmed edition's month and day.**
+Electric Forest's 2027–2030 rows count down to 25 June of each year because the
+confirmed 2026 edition ran 25–28 June. These are *derived*, not sourced: the
+row text still reads "Late June (projected)", the card label reads
+"Jun 2027 (est.)", and the countdown reads *"to the festival's usual 2027
+window — projected, not yet announced. Confirm before booking anything."*
+A projected countdown is a guess with a clock on it and is labelled as one. (Derived)
+
+**Fallow and biennial years are skipped, not counted.** A plain "same window,
+next year" rule would be wrong for two of the eight: Glastonbury takes fallow
+years and Rock in Rio's Rio edition is biennial. Both already had `n` rows in
+the table, and the next-edition search skips them. Verified by simulation: on
+2026-09-21 Rock in Rio resolves to **2028**, not 2027. (H)
+
+**An edition stays "next" until the day after it ends**, so a festival reads
+*"Happening now"* while it runs rather than flipping to next year on opening
+day. Verified at a simulated 2026-06-26: Electric Forest resolves to the live
+2026 edition. (H)
+
+#### Verified by simulation
+
+Next-edition resolution was checked for all eight festivals at six simulated
+dates — 2026-09-21, 2026-06-26, 2026-11-07, 2027-07-01, 2028-01-01 and
+2031-01-01 — in headless Chromium, with no page errors. Results on
+2026-09-21: EDC Orlando Nov 2026 (confirmed), Tomorrowland Jul 2027
+(confirmed), Glastonbury Jun 2027 (confirmed), the other five projected,
+Rock in Rio correctly at 2028. (H)
+
+#### The remaining cliff
+
+The editions tables end at 2030. From 1 January 2031 every festival resolves
+to no edition and shows *"No further editions listed here — check the official
+site."* The app degrades to an honest message rather than a wrong date, but it
+does stop being useful on that date unless the tables are extended. (H)
+
+#### Still stale
+
+The ticket figures in section 8 were verified in June 2026 and are three months
+old. Nothing in this release re-verified them; they remain M — volatile.

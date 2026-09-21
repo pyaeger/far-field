@@ -42,21 +42,8 @@
   .wmglow{position:absolute;left:-18px;top:calc(2px + env(safe-area-inset-top));width:230px;height:86px;pointer-events:none;
     background:radial-gradient(52% 58% at 34% 50%,rgba(255,46,151,.30),rgba(255,179,71,.12) 58%,transparent 76%);filter:blur(16px);}
   .wordmark{position:relative;margin-left:16px;font-family:"Unbounded";font-weight:800;font-size:26px;letter-spacing:-.02em;
-    background:linear-gradient(92deg,var(--magenta),var(--amber),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;cursor:pointer;user-select:none;display:inline-block;}
+    background:linear-gradient(92deg,var(--magenta),var(--amber),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;}
   .tag{color:var(--muted);font-size:13px;margin-top:2px;margin-left:16px;}
-  .chips{display:flex;gap:8px;margin-left:16px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none;}
-  .chips::-webkit-scrollbar{display:none;}
-  /* Touch scrolls the row with a finger; the fade says there is more to the right. */
-  @media (hover:none),(pointer:coarse){
-    .chips{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent);}
-  }
-  /* A mouse has no horizontal gesture and the row has no scrollbar, so on a
-     pointer device the chips wrap instead - every filter visible, nothing to discover. */
-  @media (hover:hover) and (pointer:fine){
-    .chips{flex-wrap:wrap;overflow-x:visible;row-gap:8px;}
-  }
-  .chip{flex:0 0 auto;border:1px solid var(--line);background:var(--ink-2);color:var(--muted);padding:7px 14px;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;transition:.15s;}
-  .chip[aria-pressed="true"]{background:var(--text);color:var(--ink);border-color:var(--text);}
 
   .card{position:relative;border-radius:var(--r);overflow:hidden;margin:14px 0;border:1px solid var(--line);cursor:pointer;transition:transform .18s ease;}
   .card:active{transform:scale(.985);}
@@ -131,21 +118,9 @@
   nav button .ni{font-size:18px;line-height:1;}
   nav button[aria-current="true"]{color:var(--text);}
   nav button[aria-current="true"] .ni{filter:drop-shadow(0 0 8px var(--magenta));}
-  nav .afters-nav[hidden]{display:none;}
 
   .panel{display:none;}
   .panel.show{display:block;}
-  .q{margin:20px 0;}
-  .q p{font-weight:700;margin:0 0 10px;}
-  .opt{display:block;width:100%;text-align:left;background:var(--ink-2);border:1px solid var(--line);color:var(--text);padding:14px;border-radius:14px;margin:8px 0;font-size:14px;cursor:pointer;font-family:"DM Sans";}
-  .opt[aria-pressed="true"]{border-color:var(--magenta);background:linear-gradient(92deg,rgba(255,46,151,.16),transparent);}
-  .result{background:var(--ink-2);border:1px solid var(--magenta);border-radius:var(--r);padding:20px;margin-top:16px;text-align:center;}
-  .result h2{font-size:26px;text-transform:uppercase;margin-bottom:6px;background:linear-gradient(92deg,var(--magenta),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .check{display:flex;gap:12px;align-items:flex-start;background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:14px;margin:9px 0;cursor:pointer;}
-  .check .box{flex:0 0 auto;width:22px;height:22px;border-radius:7px;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink);transition:.15s;}
-  .check[data-done="true"] .box{background:var(--good);border-color:var(--good);}
-  .check[data-done="true"] .lbl{color:var(--muted);text-decoration:line-through;}
-  .check .lbl{font-size:14px;}
   .secthead{text-align:center;margin:8px 0 20px;}
   .secthead h2{font-size:30px;text-transform:uppercase;background:linear-gradient(92deg,var(--magenta),#b06bff);-webkit-background-clip:text;background-clip:text;color:transparent;}
   .secthead p{color:var(--muted);font-size:13px;margin-top:6px;}
@@ -191,7 +166,6 @@
     <div class="wmglow" aria-hidden="true"></div>
     <span class="wordmark" id="wordmark" title="Far Field">Far Field</span>
     <div class="tag">Three close to home &middot; five across an ocean</div>
-    <div class="chips" id="chips"></div>
   </header>
   <div id="songCard">
     <div class="song-eyebrow">&#9834; An original track</div>
@@ -200,16 +174,6 @@
     <audio controls preload="none" src="./twenty-nine-fine.mp3"></audio>
   </div>
   <div class="panel show" id="home"></div>
-  <div class="panel" id="quiz">
-    <h2 style="font-size:24px;text-transform:uppercase;margin:14px 0 4px;">Find your match</h2>
-    <p class="tag" style="margin-bottom:6px;">Answer four, get your festival.</p>
-    <div id="quizBody"></div>
-  </div>
-  <div class="panel" id="check">
-    <h2 style="font-size:24px;text-transform:uppercase;margin:14px 0 4px;">First-festival kit</h2>
-    <p class="tag" style="margin-bottom:10px;">The stuff first-timers wish they'd sorted early. Tick as you go.</p>
-    <div id="checkBody"></div>
-  </div>
   <div class="panel" id="afters">
     <div class="secthead"><h2>The Afters</h2><p>When the mainstage goes quiet &mdash; where the scene keeps going, city by city. Go meet your people.</p></div>
     <div id="aftersBody"></div>
@@ -232,7 +196,7 @@
       <ul class="tips">
         <li><b>Featured</b> (the &#9733; row up top): the three closest to home &mdash; Electric Forest, Lollapalooza, EDC Orlando.</li>
         <li><b>Bucket list</b>: five worth crossing an ocean for.</li>
-        <li>The <b>chips</b> across the top filter the list by vibe. Tap any card to open it.</li>
+        <li>Tap any card to open it.</li>
       </ul></section>
     <section class="blk"><h3>Inside a festival</h3>
       <ul class="tips">
@@ -240,19 +204,15 @@
         <li><b>Dates &mdash; next 5 years</b>, each marked Confirmed or Projected. Reconfirm on the official site before booking.</li>
         <li>A live <b>countdown</b>, rough <b>cost</b>, a <b>Spotify</b> warm-up, <b>plan-it</b> links, and <b>community</b>.</li>
       </ul></section>
-    <section class="blk"><h3>The fun stuff</h3>
-      <ul class="tips">
-        <li><b>&#10024; Match</b> &mdash; four questions, and it picks your festival.</li>
-        <li><b>&#127890; Kit</b> &mdash; a first-festival checklist; your ticks save on that phone.</li>
-        <li><b>&#129517; Inner Journeys</b> (in the bottom bar) &mdash; copy-paste prompts that turn any AI into a personal interviewer.</li>
-      </ul></section>
-    <section class="blk"><h3>&#127769; The Afters &mdash; your secret tab</h3>
-      <p class="leadp">Hidden on purpose. To unlock it: <b>triple-tap the &ldquo;Far Field&rdquo; title</b> at the top of the home screen. A new Afters button appears in the bottom bar and stays there. Inside: the after-hours and LGBTQ+ scene around each festival, plus safe-connecting tips.</p></section>
+    <section class="blk"><h3>&#127769; The Afters</h3>
+      <p class="leadp">The after-hours and LGBTQ+ scene around each festival, city by city, plus safe-connecting tips. It used to be hidden behind a triple-tap on the title; it is in the bottom bar now, because hiding the most useful thing in the app was a bad trade.</p></section>
+    <section class="blk"><h3>&#129517; Inner Journeys</h3>
+      <p class="leadp">Six copy-paste prompts that turn any AI into a patient interviewer &mdash; one question at a time, waiting for your answer before the next. Nothing to do with festivals; they work on their own.</p></section>
     <section class="blk"><h3>Honest notes</h3>
       <ul class="tips">
         <li>Prices and projected dates are approximate &mdash; confirm officially before booking.</li>
         <li>Works offline after you open it once on WiFi; live links still need a connection.</li>
-        <li>No accounts, so each phone remembers its own progress.</li>
+        <li>No accounts and no analytics. Nothing about you leaves the phone.</li>
         <li>EDC Orlando is 18+ (21+ VIP) and needs photo ID; your other picks are all-ages.</li>
       </ul></section>
   </div>
@@ -274,11 +234,9 @@
 
 <nav id="nav">
   <button data-go="home" aria-current="true"><span class="ni">&#127914;</span>Festivals</button>
-  <button data-go="quiz"><span class="ni">&#10024;</span>Match</button>
-  <button data-go="check"><span class="ni">&#127890;</span>Kit</button>
+  <button data-go="afters"><span class="ni">&#127769;</span>Afters</button>
   <button data-go="journeys"><span class="ni">&#129517;</span>Journeys</button>
   <button data-go="guide"><span class="ni">&#128214;</span>Guide</button>
-  <button class="afters-nav" data-go="afters" hidden><span class="ni">&#127769;</span>Afters</button>
 </nav>
 <div class="toast" id="toast"></div>
 
@@ -458,22 +416,9 @@ const AFTERS=[
          "Rio wears its openness proudly \u2014 few cities feel this free after dark."]}
 ];
 
-const QUIZ=[
- {q:"What pulls you in?",opts:[{t:"Pure electronic euphoria",s:{tml:3,edc:3,ef:1,rir:1}},{t:"A bit of everything",s:{glasto:3,sziget:3,lolla:3}},{t:"Live bands, real instruments",s:{fuji:3,glasto:1,ef:2}},{t:"Big, loud party energy",s:{rir:3,edc:2,tml:1,lolla:1}}]},
- {q:"Camping or a comfy bed?",opts:[{t:"Camping's part of the fun",s:{glasto:2,sziget:2,ef:2}},{t:"I want a real bed nearby",s:{tml:2,rir:2,fuji:1,lolla:2,edc:2}}]},
- {q:"How far do you want to travel?",opts:[{t:"Stay in the US",s:{ef:3,lolla:3,edc:3}},{t:"Cross an ocean",s:{tml:2,glasto:2,sziget:2,fuji:2,rir:2}}]},
- {q:"Your ideal crowd?",opts:[{t:"Massive and electric",s:{tml:2,rir:2,glasto:1,lolla:2,edc:2}},{t:"Big but calm and kind",s:{fuji:3,sziget:1,ef:2}}]}
-];
 
-const CHECKLIST=["Register / set a ticket-sale reminder (the good ones sell out fast)","Lock flights early \u2014 festival weekends spike prices","Sort a travel eSIM so you've got data without bill shock","Check passport validity + whether you need a visa","Travel insurance that actually covers events","Pack for weather you don't expect (rain gear + layers)","Comfortable broken-in shoes \u2014 you'll walk miles","A power bank + offline maps of the site and city","Some local cash as backup to cards/wristbands","Share your plans with someone back home"];
 
-let activeGenre="All";
-const homeEl=document.getElementById('home'),chipsEl=document.getElementById('chips');
-/* Broadest filter first, so the row reads from wide to narrow rather than in
-   whatever order the festivals happen to be listed. */
-function allGenres(){const n={};FESTS.forEach(f=>f.genres.forEach(g=>n[g]=(n[g]||0)+1));
-  return["All",...Object.keys(n).sort((a,b)=>n[b]-n[a]||a.localeCompare(b))];}
-function renderChips(){chipsEl.innerHTML=allGenres().map(g=>`<button class="chip" data-g="${g}" aria-pressed="${g===activeGenre}">${g}</button>`).join('');}
+const homeEl=document.getElementById('home');
 function cardHTML(f){
   return `<div class="card" data-id="${f.id}">
     <div class="poster" style="background:linear-gradient(135deg,${f.grad[0]},${f.grad[1]})">
@@ -482,8 +427,7 @@ function cardHTML(f){
     <div class="gchips">${f.genres.map(g=>`<span class="g">${g}</span>`).join('')}</div></div>`;
 }
 function renderHome(){
-  const list=FESTS.filter(f=>activeGenre==="All"||f.genres.includes(activeGenre));
-  const picks=list.filter(f=>f.featured), rest=list.filter(f=>!f.featured);
+  const picks=FESTS.filter(f=>f.featured), rest=FESTS.filter(f=>!f.featured);
   let html='';
   if(picks.length){html+=`<div class="sectlabel">\u2605 Featured</div>`+picks.map(cardHTML).join('');}
   if(rest.length){html+=`<div class="sectlabel muted">Bucket list <span class="sub">\u00b7 worth crossing an ocean for</span></div>`+rest.map(cardHTML).join('');}
@@ -575,38 +519,18 @@ function closeFest(){
   closeSheet();
 }
 
-const answers={};
-function renderQuiz(){
-  document.getElementById('quizBody').innerHTML=QUIZ.map((q,qi)=>`<div class="q"><p>${qi+1}. ${q.q}</p>
-    ${q.opts.map((o,oi)=>`<button class="opt" data-q="${qi}" data-o="${oi}" aria-pressed="${answers[qi]===oi}">${o.t}</button>`).join('')}</div>`).join('')+`<div id="quizResult"></div>`;
-  if(Object.keys(answers).length===QUIZ.length)showResult();
-}
-function showResult(){
-  const score={};FESTS.forEach(f=>score[f.id]=0);
-  Object.entries(answers).forEach(([qi,oi])=>{Object.entries(QUIZ[qi].opts[oi].s).forEach(([id,v])=>score[id]+=v);});
-  const win=Object.entries(score).sort((a,b)=>b[1]-a[1])[0][0];const f=FESTS.find(x=>x.id===win);
-  document.getElementById('quizResult').innerHTML=`<div class="result"><div class="eyebrow">Your match</div><h2>${f.name}</h2>
-    <p style="color:var(--muted);font-size:14px;margin:6px 0 14px;">${f.where} \u00b7 next ${nextLabel(f)}</p>
-    <button class="enter" id="seeMatch">See the full lowdown &rarr;</button></div>`;
-  document.getElementById('seeMatch').onclick=()=>openFest(win);
-}
 
-function renderCheck(){const done=store.get('kit')||{};
-  document.getElementById('checkBody').innerHTML=CHECKLIST.map((c,i)=>`<div class="check" data-i="${i}" data-done="${!!done[i]}"><div class="box">\u2713</div><div class="lbl">${c}</div></div>`).join('');}
 
-const panels=['home','quiz','check','afters','guide','journeys'];
+const panels=['home','afters','guide','journeys'];
 function go(name){
   panels.forEach(p=>document.getElementById(p).classList.toggle('show',p===name));
   document.querySelectorAll('nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===name));
-  document.querySelector('header .chips').style.display=name==='home'?'flex':'none';
   document.getElementById('songCard').style.display=name==='home'?'block':'none';
   if(sheet.classList.contains('open'))closeFest();
   window.scrollTo(0,0);
 }
 
-let aftersUnlocked=!!store.get('afters');
 function renderAfters(){document.getElementById('aftersBody').innerHTML=AFTERS.map(a=>`<div class="acity"><h3>${a.city}</h3><div class="csub">${a.sub}</div>${a.spots.map(s=>`<div class="spot">${s}</div>`).join('')}</div>`).join('');}
-function revealAfters(){document.querySelector('.afters-nav').hidden=false;if(!aftersUnlocked){aftersUnlocked=true;store.set('afters',true);toast("\uD83C\uDF19 The Afters unlocked");}}
 
 const JOURNEYS=[
  {n:"01",title:"Personality & Inner Wiring",desc:"What energizes and drains you, your patterns, how you show up under pressure.",theme:"Personality & Inner Wiring",framing:"how you're built \u2014 what energizes and drains you, the patterns you repeat, and how you show up, especially under pressure"},
@@ -653,17 +577,12 @@ let toastT=null;
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),1800);}
 
 document.getElementById('enterBtn').onclick=()=>document.getElementById('splash').classList.add('gone');
-chipsEl.onclick=e=>{const b=e.target.closest('.chip');if(!b)return;activeGenre=b.dataset.g;renderChips();renderHome();};
 homeEl.onclick=e=>{const c=e.target.closest('.card');if(c)openFest(c.dataset.id);};
 document.getElementById('backBtn').onclick=closeFest;
-document.getElementById('quizBody').onclick=e=>{const o=e.target.closest('.opt');if(!o)return;answers[o.dataset.q]=+o.dataset.o;renderQuiz();};
-document.getElementById('checkBody').onclick=e=>{const c=e.target.closest('.check');if(!c)return;const i=c.dataset.i,done=store.get('kit')||{};done[i]=!done[i];store.set('kit',done);c.dataset.done=!!done[i];};
 document.getElementById('nav').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.go);};
 window.addEventListener('popstate',()=>{if(sheet.classList.contains('open'))closeSheet();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sheet.classList.contains('open'))closeFest();});
 document.getElementById('journeysBody').onclick=e=>{const b=e.target.closest('.copybtn');if(b)copyText(buildPrompt(JOURNEYS[+b.dataset.j]));};
-let taps=0,tapT=null;
-document.getElementById('wordmark').addEventListener('click',()=>{taps++;clearTimeout(tapT);tapT=setTimeout(()=>taps=0,600);if(taps>=3){taps=0;revealAfters();go('afters');}});
 
 /* low-power safeguard: sample framerate, drop the glow animation if the device struggles */
 (function(){
@@ -677,9 +596,8 @@ document.getElementById('wordmark').addEventListener('click',()=>{taps++;clearTi
 /* register the service worker for genuine offline (works once hosted over https) */
 if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js').catch(()=>{});});}
 
-renderChips();renderHome();renderQuiz();renderCheck();renderAfters();renderJourneys();
+renderHome();renderAfters();renderJourneys();
 document.getElementById('songCard').style.display='block';
-if(aftersUnlocked)document.querySelector('.afters-nav').hidden=false;
 </script>
 </body>
 </html>

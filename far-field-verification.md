@@ -384,3 +384,62 @@ still scrolls behind the fade; 320 px: 174 px. (H)
 
 No service-worker bump — the worker is network-first for navigation, so an
 updated `index.html` lands on the next online load. `far-field-v10` stands.
+
+---
+
+## Version 6 — three features removed (September 2026)
+
+Patrick's judgement, and the counts back it: the chip row, the Match quiz and
+the Kit checklist were not earning their place. Rather than improve them, they
+were cut.
+
+**The chip row.** Eight festivals fit in two screens of scrolling. Filtering
+eight items is not a job that needs doing, and after "All" the broadest filter
+still returned five. Versions 4 and 5 spent effort aligning the row and making
+it reachable on a desktop — polish on a feature whose existence was the real
+question. (H)
+
+**Match.** Its four questions were: electronic versus live bands, camping
+versus a bed, stay in the US versus cross an ocean, massive versus calm crowd.
+**Three of those four are already printed on the cards** — the genre tags and
+the location. It asked the reader questions the list already answered. Measured
+across all 32 answer paths: every festival was reachable, but Sziget won on
+exactly 1 path, and 6 paths ended in a tie broken silently by `FESTS` array
+order with no indication to the reader that it was close. (H — brute-forced in
+the browser)
+
+**Kit.** Nine of its ten items were generic international travel advice — book
+flights early, check passport validity, travel insurance, power bank, local
+cash, tell someone your plans. Only the first mentioned festivals at all.
+Ticking boxes against advice the reader already agrees with is not a task, and
+the saved state was not worth keeping. (H — read in full)
+
+**The Afters came out of hiding.** It had been behind a triple-tap on the
+wordmark, documented only inside the Guide. It holds the after-hours and
+LGBTQ+ scene for each festival city — plausibly the most useful and least
+replaceable content in the app. Hiding it to make a secret was a bad trade. It
+is now an ordinary section in the bottom bar, and the `localStorage` unlock
+flag is gone. (H)
+
+Navigation went from `Festivals · Match · Kit · Journeys · Guide` plus a hidden
+Afters, to **`Festivals · Afters · Journeys · Guide`** — four sections, each
+with researched content behind it.
+
+`index.html` went from 59,371 to 51,666 bytes: **7,705 bytes removed, 13%.**
+The `QUIZ` and `CHECKLIST` arrays, `allGenres`, `renderChips`, `renderQuiz`,
+`showResult`, `renderCheck`, `revealAfters`, the triple-tap listener, four
+event handlers and 22 CSS rules all went with them. No dead references remain.
+(H — grep returns 0)
+
+Verified after the cut: all four sections open with content, 8 cards render,
+a festival page still opens with a history entry and closes on Escape, the
+countdown still resolves. No page errors. (H)
+
+### What is deliberately kept
+
+The genre tags still appear on each card as labels. They describe without
+claiming to filter, and the data was already there.
+
+No service-worker bump. The worker is network-first for navigation, so an
+updated `index.html` lands once GitHub Pages' 10-minute `max-age` window
+passes. `far-field-v10` stands.

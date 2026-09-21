@@ -11,11 +11,28 @@ for — what each one is actually like, and how to get there.
 
 ## What's in it
 
-Eight festivals across the US and abroad, each with dates, ticket guidance,
-travel notes and a "Real Talk" section of green and red flags. A match quiz
-scores all eight against how you like to travel. A packing kit, a hidden
-after-hours tab, and six copy-paste prompts that turn any LLM into an adaptive
-interviewer for thinking through what you actually want out of a trip.
+Four sections.
+
+**Festivals** — eight of them, three in the US and five abroad. Each carries a
+"Real Talk" section of green *and* red flags, dates for the next five years
+individually marked Confirmed or Projected, a countdown that knows the
+difference, rough cost with a dated caveat, and links out to tickets, lineup,
+flights and maps.
+
+**The Afters** — the after-hours and LGBTQ+ scene around each festival city,
+with safe-connecting notes.
+
+**Inner Journeys** — six copy-paste prompts that turn any LLM into a patient
+interviewer: one question at a time, waiting for your answer before the next.
+
+A festival promises an outer journey: extraordinary music, visuals, dancing, and
+the thrill of new friendships. These are the same trip pointed inward —
+affirming guides for the curious into identity, creativity, and meaning.
+
+Far Field never sees your answers; the conversation happens wherever you paste
+the prompt.
+
+**Guide** — how the app works, and what it does not know.
 
 An original track, *Twenty-Nine Fine*, plays offline from the app.
 

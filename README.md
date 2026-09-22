@@ -64,8 +64,22 @@ request it makes on page load. Self-hosting them would remove it.
 - `sw.js` — service worker for offline caching
 - `twenty-nine-fine.mp3` — original track, playable offline
 - `far-field-verification.md` — the evidence file
+- `LICENSE` — MIT, with the track carved out
 - `guia.html` — redirect stub for the guide that moved to [`mi-guia`](https://github.com/pyaeger/mi-guia)
 
 ## Credits
 
 Built by Patrick Yaeger. Music generated with Suno.
+
+## License
+
+The app is **MIT** — `index.html`, `sw.js`, `guia.html`, this README and the
+verification file.
+
+**The track is not.** *Twenty-Nine Fine* was generated with Suno, and the
+rights a Suno account holds in its output depend on that account's plan and on
+Suno's terms at the time. Sublicensing it under MIT would grant rights this
+repository cannot be certain it holds, so `twenty-nine-fine.mp3` is reserved.
+It ships here so the app can play it offline, not for redistribution.
+
+Full terms in [LICENSE](LICENSE).

@@ -22,17 +22,19 @@ SOFTWARE.
 
 ---
 
-NOT COVERED BY THE ABOVE
+SCOPE
 
-`twenty-nine-fine.mp3` — the track *Twenty-Nine Fine* — is not licensed under
-the MIT License. All rights are reserved. It is included in this repository so
-the app can play it offline, not so it can be redistributed.
+This licence covers everything in this repository, including
+`twenty-nine-fine.mp3` — the track *Twenty-Nine Fine*.
 
-The reason is specific rather than precautionary: the track was generated with
-Suno, and the rights a Suno account holds in its output depend on that
-account's plan and on Suno's terms at the time of generation. Sublicensing it
-to the world under MIT would grant rights this repository cannot be certain it
-holds. If that changes, this carve-out can be removed.
+The track was generated with Suno under a Pro subscription. Suno's own
+documentation states that songs made while subscribed to the Pro or Premier
+plan are owned by the subscriber, so the rights granted above are rights this
+repository holds and can pass on.
 
-Everything else in this repository — `index.html`, `sw.js`, `guia.html`, the
-README and the verification file — is MIT.
+One caveat, stated because it is true rather than because it changes the grant:
+Suno notes that AI-generated material may not be eligible for copyright
+protection at all, since copyright attaches to human authorship. If that turns
+out to be so, the MIT grant over the track is belt and braces — you already had
+the freedom it describes. The licence grants what there is to grant and makes no
+claim that copyright subsists.
